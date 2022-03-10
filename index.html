@@ -103,7 +103,7 @@
 
 
 
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo -g</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署hexo时需要的插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo-server，用于预览静态网站</span></span><br><span class="line">npm install hexo-server --save</span><br></pre></td></tr></table></figure>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo-server，用于预览静态网站</span></span><br><span class="line">npm install hexo-server --save</span><br></pre></td></tr></table></figure>
 
 
 
@@ -116,23 +116,30 @@
 
 
 
+<h2 id="创建一个about-me页面"><a href="#创建一个about-me页面" class="headerlink" title="创建一个about me页面"></a>创建一个about me页面</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page --path about/me <span class="string">&quot;About me&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成静态文件hexo generate</span></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 持续生成静态文件</span></span><br><span class="line">hexo g -w</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成并立即发布文章</span></span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="发表草稿"><a href="#发表草稿" class="headerlink" title="发表草稿"></a>发表草稿</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish [layout] &lt;filename&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="发表草稿"><a href="#发表草稿" class="headerlink" title="发表草稿"></a>发表草稿</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo publish [layout] &lt;filename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">hexo publish <span class="string">&quot;文章标题&quot;</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line"><span class="comment"># 会打开http://localhost:4000/</span></span><br></pre></td></tr></table></figure>
+<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br><span class="line"><span class="comment"># 会打开http://localhost:4000/</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<h2 id="常见问题-部署后-网页仍未更新"><a href="#常见问题-部署后-网页仍未更新" class="headerlink" title="常见问题:部署后,网页仍未更新"></a>常见问题:部署后,网页仍未更新</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解决办法清除缓存和已生成的静态文件</span></span><br><span class="line">hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/" data-id="cl0l4mmb50001vc9x61i52mf9" data-title="hexo部署gitpage" class="article-share-link">Share</a>
+      <a data-url="https://omaidb.github.io/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/" data-id="cl0l4yuj80000no9x0ka2ejf3" data-title="hexo部署gitpage" class="article-share-link">Share</a>
       
       
       
@@ -183,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/10/hello-world/" data-id="cl0l4mmaq0000vc9xgonwcicc" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="https://omaidb.github.io/2022/03/10/hello-world/" data-id="cl0l4yujd0001no9x27zg7x2k" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
