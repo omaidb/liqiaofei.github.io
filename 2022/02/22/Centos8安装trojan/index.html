@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>识途老码</title>
+  <title>Centos8安装trojan | 识途老码</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="识途老码">
-<meta property="og:url" content="https://omaidb.github.io/index.html">
+  <meta name="description" content="yum安装前置代理前置代理trojan依赖epel源 1234yum install trojan# 配置文件目录&#x2F;etc&#x2F;trojan&#x2F;config.json    编辑配置文件如果提示: SSL handshake failed 您需要将配置文件中的 “verify”:true,”verify_hostname”:true, 修改为 false  12345678910111213141516">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos8安装trojan">
+<meta property="og:url" content="https://omaidb.github.io/2022/02/22/Centos8%E5%AE%89%E8%A3%85trojan/index.html">
 <meta property="og:site_name" content="识途老码">
+<meta property="og:description" content="yum安装前置代理前置代理trojan依赖epel源 1234yum install trojan# 配置文件目录&#x2F;etc&#x2F;trojan&#x2F;config.json    编辑配置文件如果提示: SSL handshake failed 您需要将配置文件中的 “verify”:true,”verify_hostname”:true, 修改为 false  12345678910111213141516">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-22T14:18:06.000Z">
+<meta property="article:modified_time" content="2022-03-10T15:45:02.602Z">
 <meta property="article:author" content="Miles Lee">
 <meta name="twitter:card" content="summary">
   
@@ -73,194 +77,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Zerotier one 安装教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="article-date">
-  <time class="dt-published" datetime="2022-03-10T15:37:51.000Z" itemprop="datePublished">2022-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">Zerotier one安装教程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Windows版客户端安装"><a href="#Windows版客户端安装" class="headerlink" title="Windows版客户端安装"></a>Windows版客户端安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install zerotier-one -y</span><br></pre></td></tr></table></figure>
-
-<h2 id="Linux版客户端安装"><a href="#Linux版客户端安装" class="headerlink" title="Linux版客户端安装"></a>Linux版客户端安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -s https://install.zerotier.com | sudo bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 带gpg安装</span></span><br><span class="line">curl -s <span class="string">&#x27;https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg&#x27;</span> | gpg --import &amp;&amp; \</span><br><span class="line"><span class="keyword">if</span> z=$(curl -s <span class="string">&#x27;https://install.zerotier.com/&#x27;</span> | gpg); <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$z</span>&quot;</span> | sudo bash; <span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-<p>Redhat系Linux直接下载rpm包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://download.zerotier.com/redhat/el/7.9/</span><br></pre></td></tr></table></figure>
-
-<p>安装rpm包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh *.rpm </span><br></pre></td></tr></table></figure>
-
-<p>来自 <a target="_blank" rel="noopener" href="https://www.zerotier.com/download/">https://www.zerotier.com/download/</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装完会自动运行,设置开机启动</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now zerotier-one.service</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#加入网络</span></span><br><span class="line">sudo zerotier-cli <span class="built_in">join</span> 9f77fc393e83973e</span><br><span class="line"></span><br><span class="line"><span class="comment">#离开网络</span></span><br><span class="line">sudo zerotier-cli leave Network ID</span><br><span class="line"></span><br><span class="line"><span class="comment">#列出整个网络中的所有节点</span></span><br><span class="line">sudo zerotier-cli listnetworks</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看状态</span></span><br><span class="line">sudo zerotier-cli status</span><br></pre></td></tr></table></figure>
-
-<h3 id="Centos6安装"><a href="#Centos6安装" class="headerlink" title="Centos6安装"></a>Centos6安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yum install https://download.zerotier.com/redhat/el/6.9/zerotier-one-1.6.6-1.el6.x86_64.rpm -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动程序</span></span><br><span class="line">zerotier-one -d</span><br><span class="line"><span class="comment">## 或 </span></span><br><span class="line">service zerotier-one start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置服务开机自启</span></span><br><span class="line">chkconfig zerotier-one on</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看开机自启是否成功</span></span><br><span class="line">chkconfig zerotier-one --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入网络</span></span><br><span class="line">sudo zerotier-cli <span class="built_in">join</span> 9f77fc393e83973e</span><br></pre></td></tr></table></figure>
-
-<h2 id="Mac-os安装"><a href="#Mac-os安装" class="headerlink" title="Mac os安装"></a>Mac os安装</h2><p>支持MacOS 10.10或更高版本。可以从终端使用以下命令来控制，重新启动或卸载服务。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看状态</span></span><br><span class="line">sudo zerotier-cli status</span><br><span class="line"></span><br><span class="line"><span class="comment">##加入网络</span></span><br><span class="line">sudo zerotier-cli <span class="built_in">join</span> 9f77fc393e83973e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 离开网络</span></span><br><span class="line">sudo zerotier-cli leave <span class="comment">################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出整个网络中的所有节点</span></span><br><span class="line">sudo zerotier-cli listnetworks</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用launchctl 添加启动服务</span></span><br><span class="line"><span class="comment">#添加启动服务</span></span><br><span class="line">sudo launchctl load /Library/LaunchDaemons/com.zerotier.one.plist</span><br><span class="line"><span class="comment">#卸载启动服务</span></span><br><span class="line">sudo launchctl unload /Library/LaunchDaemons/com.zerotier.one.plist</span><br><span class="line"></span><br><span class="line"><span class="comment">#卸载ZeroTier</span></span><br><span class="line">sudo <span class="string">&quot;/Library/Application Support/ZeroTier/One/uninstall.sh&quot;</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" data-id="cl0l5vvwy0001qs9xg1ihcfuk" data-title="Zerotier one安装教程" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zerotier-one/" rel="tag">Zerotier one</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hexo部署gitpage" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/" class="article-date">
-  <time class="dt-published" datetime="2022-03-10T14:45:51.000Z" itemprop="datePublished">2022-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/">hexo部署gitpage</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>参考: <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
-<p><a target="_blank" rel="noopener" href="https://qlzhu.github.io/blog/51941/">https://qlzhu.github.io/blog/51941/</a></p>
-<h2 id="安装npm"><a href="#安装npm" class="headerlink" title="安装npm"></a>安装npm</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install nodejs-lts -y</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo-server，用于预览静态网站</span></span><br><span class="line">npm install hexo-server --save</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># clone代码库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/omaidb/omaidb.github.io.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd 到你的githubpage目录下</span></span><br><span class="line"><span class="built_in">cd</span> omaidb.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化站点</span></span><br><span class="line"><span class="built_in">mkdir</span> blog &amp;&amp; <span class="built_in">cd</span> blog</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将blog目录下的文件全部拷贝到git项目下,拷贝完成后可以删除blog目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将hexo代码上传</span></span><br><span class="line">git add -A</span><br><span class="line">git commit -m <span class="string">&#x27;hexo init&#x27;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="新建一篇文章"><a href="#新建一篇文章" class="headerlink" title="新建一篇文章"></a>新建一篇文章</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands">https://hexo.io/zh-cn/docs/commands</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建一篇文章</span></span><br><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">hexo new <span class="string">&quot;文章标题&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑这个文章</span></span><br><span class="line"><span class="built_in">source</span>\_posts\hexo部署gitpage.md</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="创建一个about-me页面"><a href="#创建一个about-me页面" class="headerlink" title="创建一个about me页面"></a>创建一个about me页面</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page --path about/me <span class="string">&quot;About me&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成静态文件hexo generate</span></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 持续生成静态文件</span></span><br><span class="line">hexo g -w</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成并立即发布文章</span></span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="发表草稿"><a href="#发表草稿" class="headerlink" title="发表草稿"></a>发表草稿</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo publish [layout] &lt;filename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">hexo publish <span class="string">&quot;文章标题&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br><span class="line"><span class="comment"># 会打开http://localhost:4000/</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="常见问题-部署后-网页仍未更新"><a href="#常见问题-部署后-网页仍未更新" class="headerlink" title="常见问题:部署后,网页仍未更新"></a>常见问题:部署后,网页仍未更新</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解决办法清除缓存和已生成的静态文件</span></span><br><span class="line">hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/" data-id="cl0l5vvxf0005qs9x9gkz470k" data-title="hexo部署gitpage" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/10/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-03-10T14:43:36.450Z" itemprop="datePublished">2022-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/10/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/10/hello-world/" data-id="cl0l5vvxd0004qs9xfc72fbkq" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Centos8安装trojan" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Centos8安装trojan" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/02/22/Centos8%E5%AE%89%E8%A3%85trojan/" class="article-date">
   <time class="dt-published" datetime="2022-02-22T14:18:06.000Z" itemprop="datePublished">2022-02-22</time>
@@ -273,8 +90,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/22/Centos8%E5%AE%89%E8%A3%85trojan/">Centos8安装trojan</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Centos8安装trojan
     </h1>
   
 
@@ -345,11 +162,23 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/10/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
+</article>
 
 
 </section>
