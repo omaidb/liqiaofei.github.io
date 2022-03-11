@@ -61,6 +61,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2022/03/10/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Zerotier one安装教程</title>
     <url>/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="Windows版客户端安装"><a href="#Windows版客户端安装" class="headerlink" title="Windows版客户端安装"></a>Windows版客户端安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">choco install zerotier-one -y</span><br></pre></td></tr></table></figure>
@@ -85,24 +103,6 @@
       <tags>
         <tag>Zerotier one</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/10/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>hexo部署gitpage</title>
@@ -162,7 +162,7 @@
     <content><![CDATA[<h2 id="硬驱逐和软驱逐"><a href="#硬驱逐和软驱逐" class="headerlink" title="硬驱逐和软驱逐"></a>硬驱逐和软驱逐</h2><h3 id="答"><a href="#答" class="headerlink" title="答:"></a>答:</h3><p>参考: <a href="https://kubernetes.io/zh/docs/concepts/scheduling-eviction/node-pressure-eviction/#soft-eviction-thresholds">硬驱逐条件和软驱逐条件</a></p>
 <p><a href="https://www.cnblogs.com/yaohong/p/13245723.html">kubernetes-pod驱逐机制</a></p>
 <p>1、硬驱逐：没有宽限期,硬驱逐条件时， kubelet 会立即杀死 pod<br>2、软驱逐：有宽限期, 在超过宽限期之前，kubelet 不会驱逐 Pod。</p>
-<p><img src="/image/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220311114124260.png" alt="image-20220311114124260"></p>
+<p><img src="/images/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220311114124260.png" alt="image-20220311114124260"></p>
 <h2 id="deployment如何像daemonset一样每个node运行一个"><a href="#deployment如何像daemonset一样每个node运行一个" class="headerlink" title="deployment如何像daemonset一样每个node运行一个"></a>deployment如何像daemonset一样每个node运行一个</h2><h3 id="答-1"><a href="#答-1" class="headerlink" title="答:"></a>答:</h3><p>用亲和度,pod之间有亲和度;利用亲和度,可以实现每个node运行一个</p>
 <h2 id="svc和endpoint的区别"><a href="#svc和endpoint的区别" class="headerlink" title="svc和endpoint的区别"></a>svc和endpoint的区别</h2><h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><h4 id="svc工作原理"><a href="#svc工作原理" class="headerlink" title="svc工作原理:"></a>svc工作原理:</h4><p>k8s在创建service时候，会根据标签选择器selector(Lable selector)来查找pod,据此创建与service同名的endpoint对象，当pod地址发生变化时,endpoint也会随之发生变化，service接收到前端client请求的时候，就会通过endpoint,找到要转发到哪个Pod进行访问网站的地址。(至于要转发到哪个节点的Pod,由负载均衡kube-proxy起初就决定好了的)</p>
 <h4 id="endpoint工作原理"><a href="#endpoint工作原理" class="headerlink" title="endpoint工作原理:"></a>endpoint工作原理:</h4><p>1.endpoint是k8s集群中的一个资源对象，存储在etcd中，用来记录一个service对应的所有pod的访问地址。<br>2.只有当service配置selector(选择器) ,endpoint controller才会自动创建对应的endpoint对象，否则，不会生成endpoint对象。<br>3.例:k8s集群中创建一个名为hello的service，就会生成一个同名的endpoint对象，endpoint就是service关联的pod的ip地址和端口。</p>
