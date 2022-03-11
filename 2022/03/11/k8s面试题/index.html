@@ -9,12 +9,12 @@
   <meta name="description" content="硬驱逐和软驱逐答:1、硬驱逐：主机不可调度，打上维护；2、软驱逐：亲和和反亲和,也就是利用反亲和，每个node都打上标签，然后有多少node，起多少个pod deployment如何像daemonset一样每个node运行一个答:用亲和度,pod之间有亲和度;利用亲和度,可以实现每个node运行一个 svc和endpoint的区别答:svc工作原理:k8s在创建service时候，会根据标签选择器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="遇到的k8s面试题">
-<meta property="og:url" content="https://omaidb.github.io/2022/03/10/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:url" content="https://omaidb.github.io/2022/03/11/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="识途老码">
 <meta property="og:description" content="硬驱逐和软驱逐答:1、硬驱逐：主机不可调度，打上维护；2、软驱逐：亲和和反亲和,也就是利用反亲和，每个node都打上标签，然后有多少node，起多少个pod deployment如何像daemonset一样每个node运行一个答:用亲和度,pod之间有亲和度;利用亲和度,可以实现每个node运行一个 svc和endpoint的区别答:svc工作原理:k8s在创建service时候，会根据标签选择器">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-10T14:45:51.000Z">
-<meta property="article:modified_time" content="2022-03-11T03:24:28.823Z">
+<meta property="article:published_time" content="2022-03-11T03:25:51.000Z">
+<meta property="article:modified_time" content="2022-03-11T03:26:00.148Z">
 <meta property="article:author" content="Miles Lee">
 <meta property="article:tag" content="k8s">
 <meta name="twitter:card" content="summary">
@@ -80,8 +80,8 @@
       <div class="outer">
         <section id="main"><article id="post-k8s面试题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/03/10/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2022-03-10T14:45:51.000Z" itemprop="datePublished">2022-03-10</time>
+    <a href="/2022/03/11/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2022-03-11T03:25:51.000Z" itemprop="datePublished">2022-03-11</time>
 </a>
     
   </div>
@@ -108,7 +108,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/10/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="cl0luvp850000eo9xf3x92awf" data-title="遇到的k8s面试题" class="article-share-link">Share</a>
+      <a data-url="https://omaidb.github.io/2022/03/11/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="cl0luvp850000eo9xf3x92awf" data-title="遇到的k8s面试题" class="article-share-link">Share</a>
       
       
       
@@ -120,19 +120,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          hexo部署gitpage
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/02/22/macOS%E5%89%AA%E5%88%87%E6%96%87%E4%BB%B6/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">macOS剪切快捷键</div>
+      <div class="article-nav-title">Zerotier one安装教程</div>
     </a>
   
 </nav>
@@ -184,6 +175,10 @@
       <ul>
         
           <li>
+            <a href="/2022/03/11/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/">遇到的k8s面试题</a>
+          </li>
+        
+          <li>
             <a href="/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">Zerotier one安装教程</a>
           </li>
         
@@ -193,10 +188,6 @@
         
           <li>
             <a href="/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/">hexo部署gitpage</a>
-          </li>
-        
-          <li>
-            <a href="/2022/03/10/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/">遇到的k8s面试题</a>
           </li>
         
           <li>
