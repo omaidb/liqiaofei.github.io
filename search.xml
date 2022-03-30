@@ -198,9 +198,31 @@
 <p><a href="https://www.cnblogs.com/yaohong/p/13245723.html">kubernetes-pod驱逐机制</a></p>
 <p>1、硬驱逐：没有宽限期,硬驱逐条件时， kubelet 会立即杀死 pod<br>2、软驱逐：有宽限期, 在超过宽限期之前，kubelet 不会驱逐 Pod。</p>
 <p><img src="/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220311125648437.png" alt="image-20220311125648437"></p>
-<h2 id="deployment如何像daemonset一样每个node运行一个"><a href="#deployment如何像daemonset一样每个node运行一个" class="headerlink" title="deployment如何像daemonset一样每个node运行一个"></a>deployment如何像daemonset一样每个node运行一个</h2><h3 id="答-1"><a href="#答-1" class="headerlink" title="答:"></a>答:</h3><p>用亲和度,pod之间有亲和度;利用亲和度,可以实现每个node运行一个</p>
-<h2 id="svc和endpoint的区别"><a href="#svc和endpoint的区别" class="headerlink" title="svc和endpoint的区别"></a>svc和endpoint的区别</h2><h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><h4 id="svc工作原理"><a href="#svc工作原理" class="headerlink" title="svc工作原理:"></a>svc工作原理:</h4><p>k8s在创建service时候，会根据标签选择器selector(Lable selector)来查找pod,据此创建与service同名的endpoint对象，当pod地址发生变化时,endpoint也会随之发生变化，service接收到前端client请求的时候，就会通过endpoint,找到要转发到哪个Pod进行访问网站的地址。(至于要转发到哪个节点的Pod,由负载均衡kube-proxy起初就决定好了的)</p>
-<h4 id="endpoint工作原理"><a href="#endpoint工作原理" class="headerlink" title="endpoint工作原理:"></a>endpoint工作原理:</h4><p>1.endpoint是一个svc关联的状态为running的pod,它是svc访问的端点.</p>
+<h2 id="deployment如何像daemonset一样每个node运行一个"><a href="#deployment如何像daemonset一样每个node运行一个" class="headerlink" title="deployment如何像daemonset一样每个node运行一个"></a>deployment如何像daemonset一样每个node运行一个</h2><h3 id="答-1"><a href="#答-1" class="headerlink" title="答:"></a>答:</h3><p>用<code>pod反亲和</code>可以实现.</p>
+<h2 id="svc和endpoint的区别"><a href="#svc和endpoint的区别" class="headerlink" title="svc和endpoint的区别"></a>svc和endpoint的区别</h2><h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><h4 id="svc工作原理"><a href="#svc工作原理" class="headerlink" title="svc工作原理:"></a>svc工作原理:</h4><p>svc是通过标签选择pod.</p>
+<h4 id="endpoint工作原理"><a href="#endpoint工作原理" class="headerlink" title="endpoint工作原理:"></a>endpoint工作原理:</h4><p>endpoint是监听svc选择的pod的ip.通过kube-proxy来轮询访问pod.</p>
+<h2 id="ansible中include-和-import的区别"><a href="#ansible中include-和-import的区别" class="headerlink" title="ansible中include 和 import的区别"></a>ansible中include 和 import的区别</h2><p>参考: <a href="https://www.cnblogs.com/leffss/p/14632423.html#include%E5%92%8Cimport%E5%8C%BA%E5%88%AB">ansible中include 和 import的区别</a></p>
+<h3 id="答-3"><a href="#答-3" class="headerlink" title="答:"></a>答:</h3><p><code>ansible</code> 目前有 <code>import_tasks</code>、<code>include_tasks</code>、<code>import_playbook</code>、<code>include_playbook</code>、<code>import_role</code>、<code>include_role</code></p>
+<p><code>import</code> 和 <code>include</code> 区别相近：<br><strong>区别一</strong></p>
+<ul>
+<li><code>import_tasks(Static)</code>方法会在<code>playbooks</code>解析阶段将<code>父task变量</code>和<code>子task变量</code>全部读取并加载</li>
+<li><code>include_tasks(Dynamic)</code>方法则是在执行<code>play</code>之前才会<code>加载自己变量</code></li>
+</ul>
+<p>**区别二 **</p>
+<ul>
+<li><p><code>include_tasks</code>方法调用的文件名称可以加变量</p>
+</li>
+<li><p><code>import_tasks</code>方法调用的文件名称不可以有变量</p>
+</li>
+</ul>
+<p><strong>具体参考：<a href="https://www.cnblogs.com/mauricewei/p/10054041.html">https://www.cnblogs.com/mauricewei/p/10054041.html</a></strong></p>
+<p>也正是因为「include_task」是动态导入，当我们给「include_role」导入的role打tag时，实际并不会执行该role的task。</p>
+<h2 id="RUN-CMD-ENTRYPOINT的区别"><a href="#RUN-CMD-ENTRYPOINT的区别" class="headerlink" title="RUN,CMD,ENTRYPOINT的区别"></a>RUN,CMD,ENTRYPOINT的区别</h2><p>参考 <a href="https://www.jianshu.com/p/f0a0f6a43907">RUN,CMD,ENTRYPOINT的区别</a></p>
+<ul>
+<li><code>RUN</code>命令执行命令并创建新的镜像层，通常用于安装软件包</li>
+<li><code>CMD</code>命令设置容器启动后默认执行的命令及其参数，但CMD设置的命令能够被docker run命令后面的命令行参数替换</li>
+<li><code>ENTRYPOINT</code>配置容器启动时的执行命令（不会被忽略，一定会被执行，即使运行 docker run时指定了其他命令）</li>
+</ul>
 ]]></content>
       <tags>
         <tag>k8s</tag>
