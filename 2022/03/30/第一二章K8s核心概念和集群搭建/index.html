@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>第一二章K8s核心概念和集群搭建 | 识途老码</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1. 搭建一个k8s集群1234[master root ~]# kubectl get no -owideNAME     STATUS   ROLES                  AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                           KERNEL-VERSION">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一二章K8s核心概念和集群搭建">
+<meta property="og:url" content="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="识途老码">
+<meta property="og:description" content="1. 搭建一个k8s集群1234[master root ~]# kubectl get no -owideNAME     STATUS   ROLES                  AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                           KERNEL-VERSION">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-30T04:15:51.000Z">
+<meta property="article:modified_time" content="2022-03-30T04:29:58.504Z">
+<meta property="article:author" content="Miles Lee">
+<meta property="article:tag" content="k8s">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="识途老码" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">识途老码</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">菜鸟Linux运维工程</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://omaidb.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-第一二章K8s核心概念和集群搭建" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" class="article-date">
+  <time class="dt-published" datetime="2022-03-30T04:15:51.000Z" itemprop="datePublished">2022-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      第一二章K8s核心概念和集群搭建
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-搭建一个k8s集群"><a href="#1-搭建一个k8s集群" class="headerlink" title="1. 搭建一个k8s集群"></a>1. 搭建一个k8s集群</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[master root ~]<span class="comment"># kubectl get no -owide</span></span><br><span class="line">NAME     STATUS   ROLES                  AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                           KERNEL-VERSION                CONTAINER-RUNTIME</span><br><span class="line">master   Ready    control-plane,master   13d   v1.22.7   192.168.123.200   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br><span class="line">node     Ready    &lt;none&gt;                 13d   v1.22.7   192.168.123.220   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-新建一个命名空间，创建一个deployment并暴露Service"><a href="#2-新建一个命名空间，创建一个deployment并暴露Service" class="headerlink" title="2.新建一个命名空间，创建一个deployment并暴露Service"></a>2.新建一个命名空间，创建一个deployment并暴露Service</h2><ul>
+<li>命名空间： aliang-cka</li>
+<li>名称： web</li>
+<li>镜像： nginx</li>
+</ul>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建一个命名空间</span></span><br><span class="line">kubectl create namespace aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用kubens切换到aliang-cka这个命名空间</span></span><br><span class="line">kubens aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建deployment</span></span><br><span class="line">kubectl create deployment web --image=nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看web这个deployment创建成功没有</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get deployments.apps web </span></span><br><span class="line">NAME   READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">web    1/1     1            1           7m23s</span><br><span class="line">[master root ~]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">web-96d5df5c8-pj8cg   1/1     Running   0          7m30s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露一个服务</span></span><br><span class="line">kubectl expose deployment web --port=80 --target-port=80 --<span class="built_in">type</span>=NodePort</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问验证</span></span><br><span class="line">[master root ~]<span class="comment"># curl 10.83.28.128|grep title</span></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   615  100   615    0     0   300k      0 --:--:-- --:--:-- --:--:--  300k</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-列出命名空间下指定标签pod"><a href="#3-列出命名空间下指定标签pod" class="headerlink" title="3.列出命名空间下指定标签pod"></a>3.列出命名空间下指定标签pod</h2><p>命名空间: kube-system</p>
+<p>标签: k8s-app&#x3D;kube-dns</p>
+<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询pod,-n=kube-system,-l=k8s-app=kube-dns</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns</span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看完整标签</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns --show-labels </span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE   LABELS</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" data-id="cl1d2kqaq000be89xc4k1b1x0" data-title="第一二章K8s核心概念和集群搭建" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          第三章：K8s监控与日志
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/11/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">遇到的k8s面试题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zerotier-one/" rel="tag">Zerotier one</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Zerotier-one/" style="font-size: 10px;">Zerotier one</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/k8s/" style="font-size: 20px;">k8s</a> <a href="/tags/macOS/" style="font-size: 15px;">macOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/30/%E7%AC%AC%E4%BA%94%E7%AB%A0-k8s%E8%B0%83%E5%BA%A6-pod%E8%B0%83%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%AF%87/">第五章-k8s调度-pod调度控制篇</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Deployment%E7%AF%87/">第四章：K8s管理应用生命周期-Deployment篇</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Pod%E7%AF%87/">第四章：K8s管理应用生命周期-Pod篇</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/">第三章：K8s监控与日志</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">第一二章K8s核心概念和集群搭建</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Miles Lee<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

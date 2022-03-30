@@ -75,6 +75,72 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-macOS显示隐藏文件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/22/macOS%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6/" class="article-date">
+  <time class="dt-published" datetime="2022-02-22T15:18:06.000Z" itemprop="datePublished">2022-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/22/macOS%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6/">macOS显示隐藏文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="苹果Mac操作系统下怎么显示隐藏文件"><a href="#苹果Mac操作系统下怎么显示隐藏文件" class="headerlink" title="苹果Mac操作系统下怎么显示隐藏文件"></a>苹果Mac操作系统下怎么显示隐藏文件</h2><br/>
+
+
+
+<h2 id="1-Terminal"><a href="#1-Terminal" class="headerlink" title="1. Terminal"></a>1. Terminal</h2><p>最简单的是通过在Mac终端输入命令。  </p>
+<p>显示隐藏文件（注意空格和大小写）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles YES</span><br></pre></td></tr></table></figure>
+
+<p>不显示隐藏文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">false</span> </span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles NO</span><br></pre></td></tr></table></figure>
+
+<p>输入完成后，单击Enter键，然后直接退出终端，重新启动Finder即可。<br>重启Finder：首先强制退出Finder，再重新启动Finder即可。</p>
+<br/>
+
+
+
+<h2 id="2-快捷键"><a href="#2-快捷键" class="headerlink" title="2. 快捷键"></a>2. 快捷键</h2><ol>
+<li>在这里隐藏文件所在的目录按键盘上面的<code>shift+cmmand+.</code> ，接着看到隐藏文件夹内凡是前面带有小点的隐藏文件，或者是显示淡蓝色的文件都是隐藏文件。通过这个方式就可以查看隐藏的目录。</li>
+<li>要恢复隐藏文件的话再次按<code>shift+cmmand+.</code> ，即可恢复文件的隐藏状态，如图二隐藏的文件已经不可见。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://omaidb.github.io/2022/02/22/macOS%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6/" data-id="cl1d2kqap0009e89x1ysph95p" data-title="macOS显示隐藏文件" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Centos8安装trojan" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/02/22/Centos8%E5%AE%89%E8%A3%85trojan/" class="article-date">
@@ -162,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/02/22/Centos8%E5%AE%89%E8%A3%85trojan/" data-id="cl1d2jmig0000sw9x10c60rlw" data-title="Centos8安装trojan" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/02/22/Centos8%E5%AE%89%E8%A3%85trojan/" data-id="cl1d2kqab0000e89x3fm7hcx8" data-title="Centos8安装trojan" class="article-share-link">分享</a>
       
       
       
@@ -242,7 +308,7 @@
           </li>
         
           <li>
-            <a href="/2022/03/11/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/">遇到的k8s面试题</a>
+            <a href="/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">第一二章K8s核心概念和集群搭建</a>
           </li>
         
       </ul>
