@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Centos7安装hexo</title>
+    <url>/2022/04/23/Centos7%E5%AE%89%E8%A3%85hexo/</url>
+    <content><![CDATA[<h2 id="编译安装nodejs-LTS"><a href="#编译安装nodejs-LTS" class="headerlink" title="编译安装nodejs-LTS"></a>编译安装nodejs-LTS</h2><p>nodejs地址: <a href="https://nodejs.org/zh-cn/download/">https://nodejs.org/zh-cn/download/</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装编译环境依赖包--可以不执行</span></span><br><span class="line"><span class="comment">## centos7源中的gccg++版本只有4.8.5</span></span><br><span class="line">yum install gcc-c++ -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="升级gcc和g-版本到5-2-0"><a href="#升级gcc和g-版本到5-2-0" class="headerlink" title="升级gcc和g++版本到5.2.0"></a>升级gcc和g++版本到5.2.0</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/src</span><br><span class="line"><span class="comment"># 下载gcc5.2.0源码</span></span><br><span class="line">wget http://ftp.gnu.org/gnu/gcc/gcc-5.2.0/gcc-5.2.0.tar.bz2</span><br><span class="line">tar -jxvf gcc-5.2.0.tar.bz2</span><br><span class="line"><span class="comment"># 进入gcc目录安装</span></span><br><span class="line"><span class="built_in">cd</span> gcc-5.2.0</span><br><span class="line"><span class="comment"># 下载某些依赖包</span></span><br><span class="line">./contrib/download_prerequisites</span><br><span class="line"><span class="comment"># 创建bulid文件夹</span></span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">../configure --prefix=/usr/local/gcc --enable-languages=c,c++ --disable-multilib</span><br><span class="line"><span class="comment"># 编译安装,此过程耗时较长</span></span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="comment"># 修改软连接</span></span><br><span class="line"><span class="built_in">mv</span> /usr/bin/gcc /usr/bin/gcc_bak</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/gcc/bin/gcc /usr/bin/gcc</span><br><span class="line"><span class="built_in">mv</span> /usr/bin/g++ /usr/bin/g++_bak</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/gcc/bin/g++ /usr/bin/g++</span><br><span class="line"><span class="comment"># 查看升级后版本</span></span><br><span class="line">gcc --verson</span><br><span class="line">g++ --version</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载源码包</span></span><br><span class="line">wget -c https://nodejs.org/dist/v16.14.2/node-v16.14.2.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入并解压</span></span><br><span class="line">tar xvf node-v16.14.2.tar.gz &amp;&amp; <span class="built_in">cd</span> node-v16.14.2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译安装</span></span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="yum安装nodejs-LTS-V16"><a href="#yum安装nodejs-LTS-V16" class="headerlink" title="yum安装nodejs LTS V16"></a>yum安装nodejs LTS V16</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装yum源</span></span><br><span class="line">curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum安装nodejs</span></span><br><span class="line">sudo yum -y install nodejs</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="查看node和npm版本"><a href="#查看node和npm版本" class="headerlink" title="查看node和npm版本"></a>查看node和npm版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo</span><br><span class="line"></span><br><span class="line">hexo -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo-server，用于预览静态网站</span></span><br><span class="line">npm install hexo-server --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装本地搜索插件</span></span><br><span class="line">npm install hexo-generator-searchdb --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装文章字数统计及阅读时常功能</span></span><br><span class="line">npm install hexo-wordcount --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装图片显示插件(实测没用)</span></span><br><span class="line">npm install hexo-asset-img --save</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="发布文件"><a href="#发布文件" class="headerlink" title="发布文件"></a>发布文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑这个文章</span></span><br><span class="line"><span class="built_in">source</span>\_posts\hexo部署gitpage.md</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解决办法清除缓存和已生成的静态文件</span></span><br><span class="line"><span class="comment"># 生成静态页面并发布文章</span></span><br><span class="line"><span class="comment"># 打开hexo服务</span></span><br><span class="line">hexo clean &amp;&amp; hexo g -d &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Centos7安装socks5</title>
     <url>/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/</url>
     <content><![CDATA[<h2 id="编译安装socks5"><a href="#编译安装socks5" class="headerlink" title="编译安装socks5"></a>编译安装socks5</h2><h3 id="安装编译环境"><a href="#安装编译环境" class="headerlink" title="安装编译环境"></a>安装编译环境</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-devel cyrus-sasl-devel openssl-devel</span><br></pre></td></tr></table></figure>
@@ -193,7 +228,7 @@
 
 
 
-<h2 id="常见问题-部署后-网页仍未更新"><a href="#常见问题-部署后-网页仍未更新" class="headerlink" title="常见问题:部署后,网页仍未更新"></a>常见问题:部署后,网页仍未更新</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解决办法清除缓存和已生成的静态文件</span></span><br><span class="line">hexo clean &amp;&amp; hexo g -d &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<h2 id="常见问题-部署后-网页仍未更新"><a href="#常见问题-部署后-网页仍未更新" class="headerlink" title="常见问题:部署后,网页仍未更新"></a>常见问题:部署后,网页仍未更新</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解决办法清除缓存和已生成的静态文件</span></span><br><span class="line"><span class="comment"># 生成静态页面并发布文章</span></span><br><span class="line"><span class="comment"># 打开hexo服务</span></span><br><span class="line">hexo clean &amp;&amp; hexo g -d &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
 
 
 
@@ -263,28 +298,6 @@
       </tags>
   </entry>
   <entry>
-    <title>第三章：K8s监控与日志</title>
-    <url>/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<h2 id="1-查看pod日志-并将日志中Eoor的行记录到指定文件"><a href="#1-查看pod日志-并将日志中Eoor的行记录到指定文件" class="headerlink" title="1.查看pod日志,并将日志中Eoor的行记录到指定文件"></a>1.查看pod日志,并将日志中Eoor的行记录到指定文件</h2><ul>
-<li>pod名称: web</li>
-<li>文件: &#x2F;opt&#x2F;web</li>
-</ul>
-<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl logs web-96d5df5c8-pj8cg |grep -i error &gt; /opt/web</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-查看指定标签使用cpu最高的pod-并记录到指定文件"><a href="#2-查看指定标签使用cpu最高的pod-并记录到指定文件" class="headerlink" title="2.查看指定标签使用cpu最高的pod,并记录到指定文件"></a>2.查看指定标签使用cpu最高的pod,并记录到指定文件</h2><ul>
-<li>标签: app&#x3D;web</li>
-<li>文件: &#x2F;opt&#x2F;cpu</li>
-</ul>
-<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><h4 id="先部署metric-server服务"><a href="#先部署metric-server服务" class="headerlink" title="先部署metric-server服务"></a>先部署<code>metric-server服务</code></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载metric-server服务</span></span><br><span class="line">wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名yaml文件</span></span><br><span class="line"><span class="built_in">mv</span> components.yaml metric-server.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改yaml文件,在容器参数中添加忽略证书</span></span><br><span class="line"><span class="comment">## 添加忽略证书</span></span><br><span class="line">- --kubelet-insecure-tls</span><br><span class="line"></span><br><span class="line"><span class="comment"># apply这个yaml</span></span><br><span class="line">kubectl apply -f metric-server.yaml </span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证是否注册到apiservers,结果必须为True</span></span><br><span class="line">kubectl get apiservices.apiregistration.k8s.io |grep metrics</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有namespace下的pod的资源使用率,并按照cpu排序</span></span><br><span class="line">[master root ~/k8s-yaml]<span class="comment"># kubectl top pod -l app=web --sort-by=&quot;cpu&quot; -A</span></span><br><span class="line">NAMESPACE    NAME                  CPU(cores)   MEMORY(bytes)   </span><br><span class="line">aliang-cka   web-96d5df5c8-pj8cg   0m           3Mi          </span><br><span class="line"></span><br><span class="line"><span class="comment"># 将结果写入到文件</span></span><br><span class="line">[master root ~/k8s-yaml]<span class="comment"># kubectl top pod -l app=web --sort-by=&quot;cpu&quot; -A &gt; /opt/cpu</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>k8s</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>macOS显示隐藏文件</title>
     <url>/2022/02/22/macOS%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6/</url>
     <content><![CDATA[<h2 id="苹果Mac操作系统下怎么显示隐藏文件"><a href="#苹果Mac操作系统下怎么显示隐藏文件" class="headerlink" title="苹果Mac操作系统下怎么显示隐藏文件"></a>苹果Mac操作系统下怎么显示隐藏文件</h2><br/>
@@ -319,30 +332,21 @@
       </tags>
   </entry>
   <entry>
-    <title>第五章-k8s调度-pod调度控制篇</title>
-    <url>/2022/03/30/%E7%AC%AC%E4%BA%94%E7%AB%A0-k8s%E8%B0%83%E5%BA%A6-pod%E8%B0%83%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%AF%87/</url>
-    <content><![CDATA[<h2 id="1-创建一个pod-分配到指定标签node上"><a href="#1-创建一个pod-分配到指定标签node上" class="headerlink" title="1. 创建一个pod,分配到指定标签node上"></a>1. 创建一个pod,分配到指定标签node上</h2><ul>
-<li>pod名: web</li>
-<li>镜像: nginx</li>
-<li>node标签: disk&#x3D;ssd</li>
+    <title>第三章：K8s监控与日志</title>
+    <url>/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<h2 id="1-查看pod日志-并将日志中Eoor的行记录到指定文件"><a href="#1-查看pod日志-并将日志中Eoor的行记录到指定文件" class="headerlink" title="1.查看pod日志,并将日志中Eoor的行记录到指定文件"></a>1.查看pod日志,并将日志中Eoor的行记录到指定文件</h2><ul>
+<li>pod名称: web</li>
+<li>文件: &#x2F;opt&#x2F;web</li>
 </ul>
-<h3 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 给node打标签</span></span><br><span class="line">kubectl label node n2 disk=ssd</span><br></pre></td></tr></table></figure>
-
-<p><code>kubectl run web --image=nginx -oyaml --dry-run &gt;1.yaml</code>创建yaml</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">run:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">  <span class="attr">nodeSelector:</span></span><br><span class="line">    <span class="attr">disk:</span> <span class="string">ssd</span></span><br></pre></td></tr></table></figure>
-
-<p><code>kubectl apply -f 1.yaml</code>创建pod</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看pod运行是否运行在n2节点</span></span><br><span class="line">[m1 root ~]<span class="comment"># kubectl get po -owide</span></span><br><span class="line">NAME   READY   STATUS    RESTARTS   AGE     IP              NODE   NOMINATED NODE   READINESS GATES</span><br><span class="line">web    1/1     Running   0          2m41s   100.104.217.1   n2     &lt;none&gt;           &lt;none&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl logs web-96d5df5c8-pj8cg |grep -i error &gt; /opt/web</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="2-确保每个节点上运行一个pod"><a href="#2-确保每个节点上运行一个pod" class="headerlink" title="2.确保每个节点上运行一个pod"></a>2.确保每个节点上运行一个pod</h2><ul>
-<li>pod名称: nginx</li>
-<li>镜像: nginx</li>
+<h2 id="2-查看指定标签使用cpu最高的pod-并记录到指定文件"><a href="#2-查看指定标签使用cpu最高的pod-并记录到指定文件" class="headerlink" title="2.查看指定标签使用cpu最高的pod,并记录到指定文件"></a>2.查看指定标签使用cpu最高的pod,并记录到指定文件</h2><ul>
+<li>标签: app&#x3D;web</li>
+<li>文件: &#x2F;opt&#x2F;cpu</li>
 </ul>
-<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">redis-cache</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">store</span></span><br><span class="line">  <span class="comment"># 副本数3</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">3</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">store</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">affinity:</span></span><br><span class="line">        <span class="comment"># pod反亲和</span></span><br><span class="line">        <span class="attr">podAntiAffinity:</span></span><br><span class="line">          <span class="comment"># 硬需求/硬策略</span></span><br><span class="line">          <span class="attr">requiredDuringSchedulingIgnoredDuringExecution:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">labelSelector:</span></span><br><span class="line">              <span class="attr">matchExpressions:</span></span><br><span class="line">              <span class="comment"># 禁止在同一node上部署多个标签为app=strore的副本</span></span><br><span class="line">              <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">app</span></span><br><span class="line">                <span class="attr">operator:</span> <span class="string">In</span></span><br><span class="line">                <span class="attr">values:</span></span><br><span class="line">                <span class="bullet">-</span> <span class="string">store</span></span><br><span class="line">            <span class="comment"># 用主机名来作为拓扑域</span></span><br><span class="line">            <span class="attr">topologyKey:</span> <span class="string">&quot;kubernetes.io/hostname&quot;</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">redis-server</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">redis:3.2-alpine</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="3-查看集群中状态为ready的node数量-并将结果写到指定文件"><a href="#3-查看集群中状态为ready的node数量-并将结果写到指定文件" class="headerlink" title="3.查看集群中状态为ready的node数量,并将结果写到指定文件"></a>3.查看集群中状态为ready的node数量,并将结果写到指定文件</h2><h3 id="答案-2"><a href="#答案-2" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看nodes状态()</span></span><br><span class="line">[m1 root ~]<span class="comment"># kubectl describe nodes|grep -i taint</span></span><br><span class="line">Taints:             &lt;none&gt;</span><br><span class="line">Taints:             &lt;none&gt;</span><br><span class="line">Taints:             &lt;none&gt;</span><br><span class="line">Taints:             &lt;none&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写入结果</span></span><br><span class="line"><span class="built_in">echo</span> 4 &gt;/nodes_num.txt</span><br></pre></td></tr></table></figure>
+<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><h4 id="先部署metric-server服务"><a href="#先部署metric-server服务" class="headerlink" title="先部署metric-server服务"></a>先部署<code>metric-server服务</code></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载metric-server服务</span></span><br><span class="line">wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名yaml文件</span></span><br><span class="line"><span class="built_in">mv</span> components.yaml metric-server.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改yaml文件,在容器参数中添加忽略证书</span></span><br><span class="line"><span class="comment">## 添加忽略证书</span></span><br><span class="line">- --kubelet-insecure-tls</span><br><span class="line"></span><br><span class="line"><span class="comment"># apply这个yaml</span></span><br><span class="line">kubectl apply -f metric-server.yaml </span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证是否注册到apiservers,结果必须为True</span></span><br><span class="line">kubectl get apiservices.apiregistration.k8s.io |grep metrics</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有namespace下的pod的资源使用率,并按照cpu排序</span></span><br><span class="line">[master root ~/k8s-yaml]<span class="comment"># kubectl top pod -l app=web --sort-by=&quot;cpu&quot; -A</span></span><br><span class="line">NAMESPACE    NAME                  CPU(cores)   MEMORY(bytes)   </span><br><span class="line">aliang-cka   web-96d5df5c8-pj8cg   0m           3Mi          </span><br><span class="line"></span><br><span class="line"><span class="comment"># 将结果写入到文件</span></span><br><span class="line">[master root ~/k8s-yaml]<span class="comment"># kubectl top pod -l app=web --sort-by=&quot;cpu&quot; -A &gt; /opt/cpu</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -373,25 +377,30 @@
       </tags>
   </entry>
   <entry>
-    <title>第六章：K8s网络-Service与Ingress篇</title>
-    <url>/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/</url>
-    <content><![CDATA[<h2 id="1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问"><a href="#1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问" class="headerlink" title="1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问"></a>1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问</h2><ul>
-<li>名称: web-service</li>
-<li>pod名称: web</li>
-<li>容器端口: 80</li>
+    <title>第五章-k8s调度-pod调度控制篇</title>
+    <url>/2022/03/30/%E7%AC%AC%E4%BA%94%E7%AB%A0-k8s%E8%B0%83%E5%BA%A6-pod%E8%B0%83%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%AF%87/</url>
+    <content><![CDATA[<h2 id="1-创建一个pod-分配到指定标签node上"><a href="#1-创建一个pod-分配到指定标签node上" class="headerlink" title="1. 创建一个pod,分配到指定标签node上"></a>1. 创建一个pod,分配到指定标签node上</h2><ul>
+<li>pod名: web</li>
+<li>镜像: nginx</li>
+<li>node标签: disk&#x3D;ssd</li>
 </ul>
-<h3 id="答"><a href="#答" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看pod的标签</span></span><br><span class="line">kubectl get po web -owide --showlable</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建service,选择pod的标签</span></span><br></pre></td></tr></table></figure>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 给node打标签</span></span><br><span class="line">kubectl label node n2 disk=ssd</span><br></pre></td></tr></table></figure>
+
+<p><code>kubectl run web --image=nginx -oyaml --dry-run &gt;1.yaml</code>创建yaml</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">run:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line">  <span class="attr">nodeSelector:</span></span><br><span class="line">    <span class="attr">disk:</span> <span class="string">ssd</span></span><br></pre></td></tr></table></figure>
+
+<p><code>kubectl apply -f 1.yaml</code>创建pod</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看pod运行是否运行在n2节点</span></span><br><span class="line">[m1 root ~]<span class="comment"># kubectl get po -owide</span></span><br><span class="line">NAME   READY   STATUS    RESTARTS   AGE     IP              NODE   NOMINATED NODE   READINESS GATES</span><br><span class="line">web    1/1     Running   0          2m41s   100.104.217.1   n2     &lt;none&gt;           &lt;none&gt;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="2-任意名称创建deployment和service-使用busybox容器nslookup解析service"><a href="#2-任意名称创建deployment和service-使用busybox容器nslookup解析service" class="headerlink" title="2.任意名称创建deployment和service,使用busybox容器nslookup解析service"></a>2.任意名称创建deployment和service,使用busybox容器nslookup解析service</h2><h3 id="答-1"><a href="#答-1" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.列出命名空间下,某个service关联的所有pod,并将pod名称写到/opt/pod.txt中(使用标签筛选)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 答:</span></span><br><span class="line"></span><br><span class="line">```bash</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-使用ingress将美女示例应用暴露到外部访问"><a href="#4-使用ingress将美女示例应用暴露到外部访问" class="headerlink" title="4.使用ingress将美女示例应用暴露到外部访问"></a>4.使用ingress将美女示例应用暴露到外部访问</h2><ul>
-<li>镜像: lizhenliang&#x2F;java-demo</li>
+<h2 id="2-确保每个节点上运行一个pod"><a href="#2-确保每个节点上运行一个pod" class="headerlink" title="2.确保每个节点上运行一个pod"></a>2.确保每个节点上运行一个pod</h2><ul>
+<li>pod名称: nginx</li>
+<li>镜像: nginx</li>
 </ul>
-<h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">redis-cache</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">store</span></span><br><span class="line">  <span class="comment"># 副本数3</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">3</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">store</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">affinity:</span></span><br><span class="line">        <span class="comment"># pod反亲和</span></span><br><span class="line">        <span class="attr">podAntiAffinity:</span></span><br><span class="line">          <span class="comment"># 硬需求/硬策略</span></span><br><span class="line">          <span class="attr">requiredDuringSchedulingIgnoredDuringExecution:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">labelSelector:</span></span><br><span class="line">              <span class="attr">matchExpressions:</span></span><br><span class="line">              <span class="comment"># 禁止在同一node上部署多个标签为app=strore的副本</span></span><br><span class="line">              <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">app</span></span><br><span class="line">                <span class="attr">operator:</span> <span class="string">In</span></span><br><span class="line">                <span class="attr">values:</span></span><br><span class="line">                <span class="bullet">-</span> <span class="string">store</span></span><br><span class="line">            <span class="comment"># 用主机名来作为拓扑域</span></span><br><span class="line">            <span class="attr">topologyKey:</span> <span class="string">&quot;kubernetes.io/hostname&quot;</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">redis-server</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">redis:3.2-alpine</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-查看集群中状态为ready的node数量-并将结果写到指定文件"><a href="#3-查看集群中状态为ready的node数量-并将结果写到指定文件" class="headerlink" title="3.查看集群中状态为ready的node数量,并将结果写到指定文件"></a>3.查看集群中状态为ready的node数量,并将结果写到指定文件</h2><h3 id="答案-2"><a href="#答案-2" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看nodes状态()</span></span><br><span class="line">[m1 root ~]<span class="comment"># kubectl describe nodes|grep -i taint</span></span><br><span class="line">Taints:             &lt;none&gt;</span><br><span class="line">Taints:             &lt;none&gt;</span><br><span class="line">Taints:             &lt;none&gt;</span><br><span class="line">Taints:             &lt;none&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写入结果</span></span><br><span class="line"><span class="built_in">echo</span> 4 &gt;/nodes_num.txt</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -468,6 +477,32 @@
 <li>文件路径: &#x2F;tmp&#x2F;test.sock</li>
 </ul>
 <h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">run:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">    <span class="attr">args:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/bin/bash</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">-c</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">touch</span> <span class="string">/tmp/test.sock;</span> <span class="string">sleep</span> <span class="number">600</span><span class="string">;</span> </span><br><span class="line">    <span class="attr">livenessProbe:</span></span><br><span class="line">      <span class="attr">exec:</span></span><br><span class="line">        <span class="attr">command:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">cat</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">/tmp/test.sock</span></span><br><span class="line">      <span class="attr">initialDelaySeconds:</span> <span class="number">0</span></span><br><span class="line">      <span class="attr">periodSeconds:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>k8s</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第六章：K8s网络-Service与Ingress篇</title>
+    <url>/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/</url>
+    <content><![CDATA[<h2 id="1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问"><a href="#1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问" class="headerlink" title="1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问"></a>1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问</h2><ul>
+<li>名称: web-service</li>
+<li>pod名称: web</li>
+<li>容器端口: 80</li>
+</ul>
+<h3 id="答"><a href="#答" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看pod的标签</span></span><br><span class="line">kubectl get po web -owide --showlable</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建service,选择pod的标签</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-任意名称创建deployment和service-使用busybox容器nslookup解析service"><a href="#2-任意名称创建deployment和service-使用busybox容器nslookup解析service" class="headerlink" title="2.任意名称创建deployment和service,使用busybox容器nslookup解析service"></a>2.任意名称创建deployment和service,使用busybox容器nslookup解析service</h2><h3 id="答-1"><a href="#答-1" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.列出命名空间下,某个service关联的所有pod,并将pod名称写到/opt/pod.txt中(使用标签筛选)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 答:</span></span><br><span class="line"></span><br><span class="line">```bash</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-使用ingress将美女示例应用暴露到外部访问"><a href="#4-使用ingress将美女示例应用暴露到外部访问" class="headerlink" title="4.使用ingress将美女示例应用暴露到外部访问"></a>4.使用ingress将美女示例应用暴露到外部访问</h2><ul>
+<li>镜像: lizhenliang&#x2F;java-demo</li>
+</ul>
+<h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
