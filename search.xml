@@ -78,7 +78,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Centos8安装trojan</title>
+    <title>Centos7打开终端自动进入Tmux会话</title>
     <url>/2022/02/22/Centos7%E9%85%8D%E7%BD%AE%E7%99%BB%E5%BD%95%E8%87%AA%E5%8A%A8%E8%BF%9B%E5%85%A5tumx/</url>
     <content><![CDATA[<h2 id="Centos7打开终端自动进入Tmux会话"><a href="#Centos7打开终端自动进入Tmux会话" class="headerlink" title="Centos7打开终端自动进入Tmux会话"></a>Centos7打开终端自动进入Tmux会话</h2><p>编辑<code>~/.bash_profile</code></p>
 <p><code>vim ~/.bash_profile</code></p>
@@ -206,24 +206,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/03/10/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>hexo部署gitpage</title>
     <url>/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/</url>
     <content><![CDATA[<p>参考: <a href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
@@ -275,6 +257,24 @@
       <tags>
         <tag>hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/03/10/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>遇到的k8s面试题</title>
@@ -333,29 +333,6 @@
       </tags>
   </entry>
   <entry>
-    <title>第一二章K8s核心概念和集群搭建</title>
-    <url>/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<h2 id="1-搭建一个k8s集群"><a href="#1-搭建一个k8s集群" class="headerlink" title="1. 搭建一个k8s集群"></a>1. 搭建一个k8s集群</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[master root ~]<span class="comment"># kubectl get no -owide</span></span><br><span class="line">NAME     STATUS   ROLES                  AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                           KERNEL-VERSION                CONTAINER-RUNTIME</span><br><span class="line">master   Ready    control-plane,master   13d   v1.22.7   192.168.123.200   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br><span class="line">node     Ready    &lt;none&gt;                 13d   v1.22.7   192.168.123.220   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-新建一个命名空间，创建一个deployment并暴露Service"><a href="#2-新建一个命名空间，创建一个deployment并暴露Service" class="headerlink" title="2.新建一个命名空间，创建一个deployment并暴露Service"></a>2.新建一个命名空间，创建一个deployment并暴露Service</h2><ul>
-<li>命名空间： aliang-cka</li>
-<li>名称： web</li>
-<li>镜像： nginx</li>
-</ul>
-<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新建一个命名空间</span></span><br><span class="line">kubectl create namespace aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用kubens切换到aliang-cka这个命名空间</span></span><br><span class="line">kubens aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建deployment</span></span><br><span class="line">kubectl create deployment web --image=nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看web这个deployment创建成功没有</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get deployments.apps web </span></span><br><span class="line">NAME   READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">web    1/1     1            1           7m23s</span><br><span class="line">[master root ~]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">web-96d5df5c8-pj8cg   1/1     Running   0          7m30s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露一个服务</span></span><br><span class="line">kubectl expose deployment web --port=80 --target-port=80 --<span class="built_in">type</span>=NodePort</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问验证</span></span><br><span class="line">[master root ~]<span class="comment"># curl 10.83.28.128|grep title</span></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   615  100   615    0     0   300k      0 --:--:-- --:--:-- --:--:--  300k</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-列出命名空间下指定标签pod"><a href="#3-列出命名空间下指定标签pod" class="headerlink" title="3.列出命名空间下指定标签pod"></a>3.列出命名空间下指定标签pod</h2><p>命名空间: kube-system</p>
-<p>标签: k8s-app&#x3D;kube-dns</p>
-<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查询pod,-n=kube-system,-l=k8s-app=kube-dns</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns</span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看完整标签</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns --show-labels </span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE   LABELS</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>k8s</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>macOS显示隐藏文件</title>
     <url>/2022/02/22/macOS%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6/</url>
     <content><![CDATA[<h2 id="苹果Mac操作系统下怎么显示隐藏文件"><a href="#苹果Mac操作系统下怎么显示隐藏文件" class="headerlink" title="苹果Mac操作系统下怎么显示隐藏文件"></a>苹果Mac操作系统下怎么显示隐藏文件</h2><br/>
@@ -390,23 +367,24 @@
       </tags>
   </entry>
   <entry>
-    <title>第三章：K8s监控与日志</title>
-    <url>/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<h2 id="1-查看pod日志-并将日志中Eoor的行记录到指定文件"><a href="#1-查看pod日志-并将日志中Eoor的行记录到指定文件" class="headerlink" title="1.查看pod日志,并将日志中Eoor的行记录到指定文件"></a>1.查看pod日志,并将日志中Eoor的行记录到指定文件</h2><ul>
-<li>pod名称: web</li>
-<li>文件: &#x2F;opt&#x2F;web</li>
+    <title>第一二章K8s核心概念和集群搭建</title>
+    <url>/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h2 id="1-搭建一个k8s集群"><a href="#1-搭建一个k8s集群" class="headerlink" title="1. 搭建一个k8s集群"></a>1. 搭建一个k8s集群</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[master root ~]<span class="comment"># kubectl get no -owide</span></span><br><span class="line">NAME     STATUS   ROLES                  AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                           KERNEL-VERSION                CONTAINER-RUNTIME</span><br><span class="line">master   Ready    control-plane,master   13d   v1.22.7   192.168.123.200   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br><span class="line">node     Ready    &lt;none&gt;                 13d   v1.22.7   192.168.123.220   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-新建一个命名空间，创建一个deployment并暴露Service"><a href="#2-新建一个命名空间，创建一个deployment并暴露Service" class="headerlink" title="2.新建一个命名空间，创建一个deployment并暴露Service"></a>2.新建一个命名空间，创建一个deployment并暴露Service</h2><ul>
+<li>命名空间： aliang-cka</li>
+<li>名称： web</li>
+<li>镜像： nginx</li>
 </ul>
-<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl logs web-96d5df5c8-pj8cg |grep -i error &gt; /opt/web</span><br></pre></td></tr></table></figure>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新建一个命名空间</span></span><br><span class="line">kubectl create namespace aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用kubens切换到aliang-cka这个命名空间</span></span><br><span class="line">kubens aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建deployment</span></span><br><span class="line">kubectl create deployment web --image=nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看web这个deployment创建成功没有</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get deployments.apps web </span></span><br><span class="line">NAME   READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">web    1/1     1            1           7m23s</span><br><span class="line">[master root ~]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">web-96d5df5c8-pj8cg   1/1     Running   0          7m30s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露一个服务</span></span><br><span class="line">kubectl expose deployment web --port=80 --target-port=80 --<span class="built_in">type</span>=NodePort</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问验证</span></span><br><span class="line">[master root ~]<span class="comment"># curl 10.83.28.128|grep title</span></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   615  100   615    0     0   300k      0 --:--:-- --:--:-- --:--:--  300k</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="2-查看指定标签使用cpu最高的pod-并记录到指定文件"><a href="#2-查看指定标签使用cpu最高的pod-并记录到指定文件" class="headerlink" title="2.查看指定标签使用cpu最高的pod,并记录到指定文件"></a>2.查看指定标签使用cpu最高的pod,并记录到指定文件</h2><ul>
-<li>标签: app&#x3D;web</li>
-<li>文件: &#x2F;opt&#x2F;cpu</li>
-</ul>
-<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><h4 id="先部署metric-server服务"><a href="#先部署metric-server服务" class="headerlink" title="先部署metric-server服务"></a>先部署<code>metric-server服务</code></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载metric-server服务</span></span><br><span class="line">wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名yaml文件</span></span><br><span class="line"><span class="built_in">mv</span> components.yaml metric-server.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改yaml文件,在容器参数中添加忽略证书</span></span><br><span class="line"><span class="comment">## 添加忽略证书</span></span><br><span class="line">- --kubelet-insecure-tls</span><br><span class="line"></span><br><span class="line"><span class="comment"># apply这个yaml</span></span><br><span class="line">kubectl apply -f metric-server.yaml </span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证是否注册到apiservers,结果必须为True</span></span><br><span class="line">kubectl get apiservices.apiregistration.k8s.io |grep metrics</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有namespace下的pod的资源使用率,并按照cpu排序</span></span><br><span class="line">[master root ~/k8s-yaml]<span class="comment"># kubectl top pod -l app=web --sort-by=&quot;cpu&quot; -A</span></span><br><span class="line">NAMESPACE    NAME                  CPU(cores)   MEMORY(bytes)   </span><br><span class="line">aliang-cka   web-96d5df5c8-pj8cg   0m           3Mi          </span><br><span class="line"></span><br><span class="line"><span class="comment"># 将结果写入到文件</span></span><br><span class="line">[master root ~/k8s-yaml]<span class="comment"># kubectl top pod -l app=web --sort-by=&quot;cpu&quot; -A &gt; /opt/cpu</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
+<h2 id="3-列出命名空间下指定标签pod"><a href="#3-列出命名空间下指定标签pod" class="headerlink" title="3.列出命名空间下指定标签pod"></a>3.列出命名空间下指定标签pod</h2><p>命名空间: kube-system</p>
+<p>标签: k8s-app&#x3D;kube-dns</p>
+<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查询pod,-n=kube-system,-l=k8s-app=kube-dns</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns</span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看完整标签</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns --show-labels </span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE   LABELS</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>k8s</tag>
       </tags>
@@ -462,6 +440,28 @@
 <li>镜像: lizhenliang&#x2F;java-demo</li>
 </ul>
 <h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>k8s</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第三章：K8s监控与日志</title>
+    <url>/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<h2 id="1-查看pod日志-并将日志中Eoor的行记录到指定文件"><a href="#1-查看pod日志-并将日志中Eoor的行记录到指定文件" class="headerlink" title="1.查看pod日志,并将日志中Eoor的行记录到指定文件"></a>1.查看pod日志,并将日志中Eoor的行记录到指定文件</h2><ul>
+<li>pod名称: web</li>
+<li>文件: &#x2F;opt&#x2F;web</li>
+</ul>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl logs web-96d5df5c8-pj8cg |grep -i error &gt; /opt/web</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-查看指定标签使用cpu最高的pod-并记录到指定文件"><a href="#2-查看指定标签使用cpu最高的pod-并记录到指定文件" class="headerlink" title="2.查看指定标签使用cpu最高的pod,并记录到指定文件"></a>2.查看指定标签使用cpu最高的pod,并记录到指定文件</h2><ul>
+<li>标签: app&#x3D;web</li>
+<li>文件: &#x2F;opt&#x2F;cpu</li>
+</ul>
+<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><h4 id="先部署metric-server服务"><a href="#先部署metric-server服务" class="headerlink" title="先部署metric-server服务"></a>先部署<code>metric-server服务</code></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载metric-server服务</span></span><br><span class="line">wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名yaml文件</span></span><br><span class="line"><span class="built_in">mv</span> components.yaml metric-server.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改yaml文件,在容器参数中添加忽略证书</span></span><br><span class="line"><span class="comment">## 添加忽略证书</span></span><br><span class="line">- --kubelet-insecure-tls</span><br><span class="line"></span><br><span class="line"><span class="comment"># apply这个yaml</span></span><br><span class="line">kubectl apply -f metric-server.yaml </span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证是否注册到apiservers,结果必须为True</span></span><br><span class="line">kubectl get apiservices.apiregistration.k8s.io |grep metrics</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有namespace下的pod的资源使用率,并按照cpu排序</span></span><br><span class="line">[master root ~/k8s-yaml]<span class="comment"># kubectl top pod -l app=web --sort-by=&quot;cpu&quot; -A</span></span><br><span class="line">NAMESPACE    NAME                  CPU(cores)   MEMORY(bytes)   </span><br><span class="line">aliang-cka   web-96d5df5c8-pj8cg   0m           3Mi          </span><br><span class="line"></span><br><span class="line"><span class="comment"># 将结果写入到文件</span></span><br><span class="line">[master root ~/k8s-yaml]<span class="comment"># kubectl top pod -l app=web --sort-by=&quot;cpu&quot; -A &gt; /opt/cpu</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
