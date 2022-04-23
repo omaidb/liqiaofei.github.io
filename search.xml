@@ -58,11 +58,49 @@
 
 
 
+
+
+<h3 id="开机无法自启动处理"><a href="#开机无法自启动处理" class="headerlink" title="开机无法自启动处理"></a>开机无法自启动处理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看服务详情</span></span><br><span class="line">systemctl status ss5 -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 错误提示</span></span><br><span class="line">Can’t create pid file /var/run/ss5/ss5.pid</span><br><span class="line">Can’t <span class="built_in">unlink</span> pid file /var/run/ss5/ss5.pid</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>由于每次重启后<code>/var/run/ss5/</code>文件夹都会被删除，所以需要修改<code>/etc/init.d/ss5</code>，</p>
+<p>在<code>start</code>段加上一句 <code>mkdir /var/run/ss5/</code>,</p>
+<p>将<code>stop</code>段的<code>rm -f /var/run/ss5/ss5.pid</code>改为<code>rm -rf /var/run/ss5/</code></p>
+<p><img src="/image/Centos7%E6%90%AD%E5%BB%BAsocks5/image-20220423222235864.png" alt="image-20220423222235864"></p>
 <h3 id="查看本地端口监听状态"><a href="#查看本地端口监听状态" class="headerlink" title="查看本地端口监听状态"></a>查看本地端口监听状态</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ss -tunlp|grep 1080</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
         <tag>socks5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Zerotier one安装教程</title>
+    <url>/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="Windows版客户端安装"><a href="#Windows版客户端安装" class="headerlink" title="Windows版客户端安装"></a>Windows版客户端安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">choco install zerotier-one -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux版客户端安装"><a href="#Linux版客户端安装" class="headerlink" title="Linux版客户端安装"></a>Linux版客户端安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -s https://install.zerotier.com | sudo bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 带gpg安装</span></span><br><span class="line">curl -s <span class="string">&#x27;https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg&#x27;</span> | gpg --import &amp;&amp; \</span><br><span class="line"><span class="keyword">if</span> z=$(curl -s <span class="string">&#x27;https://install.zerotier.com/&#x27;</span> | gpg); <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$z</span>&quot;</span> | sudo bash; <span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>Redhat系Linux直接下载rpm包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">https://download.zerotier.com/redhat/el/7.9/</span><br></pre></td></tr></table></figure>
+
+<p>安装rpm包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -ivh *.rpm </span><br></pre></td></tr></table></figure>
+
+<p>来自 <a href="https://www.zerotier.com/download/">https://www.zerotier.com/download/</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装完会自动运行,设置开机启动</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now zerotier-one.service</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加入网络</span></span><br><span class="line">sudo zerotier-cli <span class="built_in">join</span> 9f77fc393e83973e</span><br><span class="line"></span><br><span class="line"><span class="comment">#离开网络</span></span><br><span class="line">sudo zerotier-cli leave Network ID</span><br><span class="line"></span><br><span class="line"><span class="comment">#列出整个网络中的所有节点</span></span><br><span class="line">sudo zerotier-cli listnetworks</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看状态</span></span><br><span class="line">sudo zerotier-cli status</span><br></pre></td></tr></table></figure>
+
+<h3 id="Centos6安装"><a href="#Centos6安装" class="headerlink" title="Centos6安装"></a>Centos6安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yum install https://download.zerotier.com/redhat/el/6.9/zerotier-one-1.6.6-1.el6.x86_64.rpm -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动程序</span></span><br><span class="line">zerotier-one -d</span><br><span class="line"><span class="comment">## 或 </span></span><br><span class="line">service zerotier-one start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置服务开机自启</span></span><br><span class="line">chkconfig zerotier-one on</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看开机自启是否成功</span></span><br><span class="line">chkconfig zerotier-one --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入网络</span></span><br><span class="line">sudo zerotier-cli <span class="built_in">join</span> 9f77fc393e83973e</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mac-os安装"><a href="#Mac-os安装" class="headerlink" title="Mac os安装"></a>Mac os安装</h2><p>支持MacOS 10.10或更高版本。可以从终端使用以下命令来控制，重新启动或卸载服务。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#查看状态</span></span><br><span class="line">sudo zerotier-cli status</span><br><span class="line"></span><br><span class="line"><span class="comment">##加入网络</span></span><br><span class="line">sudo zerotier-cli <span class="built_in">join</span> 9f77fc393e83973e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 离开网络</span></span><br><span class="line">sudo zerotier-cli leave <span class="comment">################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出整个网络中的所有节点</span></span><br><span class="line">sudo zerotier-cli listnetworks</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用launchctl 添加启动服务</span></span><br><span class="line"><span class="comment">#添加启动服务</span></span><br><span class="line">sudo launchctl load /Library/LaunchDaemons/com.zerotier.one.plist</span><br><span class="line"><span class="comment">#卸载启动服务</span></span><br><span class="line">sudo launchctl unload /Library/LaunchDaemons/com.zerotier.one.plist</span><br><span class="line"></span><br><span class="line"><span class="comment">#卸载ZeroTier</span></span><br><span class="line">sudo <span class="string">&quot;/Library/Application Support/ZeroTier/One/uninstall.sh&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Zerotier one</tag>
       </tags>
   </entry>
   <entry>
@@ -132,32 +170,6 @@
 ]]></content>
       <tags>
         <tag>Centos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Zerotier one安装教程</title>
-    <url>/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="Windows版客户端安装"><a href="#Windows版客户端安装" class="headerlink" title="Windows版客户端安装"></a>Windows版客户端安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">choco install zerotier-one -y</span><br></pre></td></tr></table></figure>
-
-<h2 id="Linux版客户端安装"><a href="#Linux版客户端安装" class="headerlink" title="Linux版客户端安装"></a>Linux版客户端安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -s https://install.zerotier.com | sudo bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 带gpg安装</span></span><br><span class="line">curl -s <span class="string">&#x27;https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg&#x27;</span> | gpg --import &amp;&amp; \</span><br><span class="line"><span class="keyword">if</span> z=$(curl -s <span class="string">&#x27;https://install.zerotier.com/&#x27;</span> | gpg); <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$z</span>&quot;</span> | sudo bash; <span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-<p>Redhat系Linux直接下载rpm包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">https://download.zerotier.com/redhat/el/7.9/</span><br></pre></td></tr></table></figure>
-
-<p>安装rpm包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -ivh *.rpm </span><br></pre></td></tr></table></figure>
-
-<p>来自 <a href="https://www.zerotier.com/download/">https://www.zerotier.com/download/</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装完会自动运行,设置开机启动</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now zerotier-one.service</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加入网络</span></span><br><span class="line">sudo zerotier-cli <span class="built_in">join</span> 9f77fc393e83973e</span><br><span class="line"></span><br><span class="line"><span class="comment">#离开网络</span></span><br><span class="line">sudo zerotier-cli leave Network ID</span><br><span class="line"></span><br><span class="line"><span class="comment">#列出整个网络中的所有节点</span></span><br><span class="line">sudo zerotier-cli listnetworks</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看状态</span></span><br><span class="line">sudo zerotier-cli status</span><br></pre></td></tr></table></figure>
-
-<h3 id="Centos6安装"><a href="#Centos6安装" class="headerlink" title="Centos6安装"></a>Centos6安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yum install https://download.zerotier.com/redhat/el/6.9/zerotier-one-1.6.6-1.el6.x86_64.rpm -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动程序</span></span><br><span class="line">zerotier-one -d</span><br><span class="line"><span class="comment">## 或 </span></span><br><span class="line">service zerotier-one start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置服务开机自启</span></span><br><span class="line">chkconfig zerotier-one on</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看开机自启是否成功</span></span><br><span class="line">chkconfig zerotier-one --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入网络</span></span><br><span class="line">sudo zerotier-cli <span class="built_in">join</span> 9f77fc393e83973e</span><br></pre></td></tr></table></figure>
-
-<h2 id="Mac-os安装"><a href="#Mac-os安装" class="headerlink" title="Mac os安装"></a>Mac os安装</h2><p>支持MacOS 10.10或更高版本。可以从终端使用以下命令来控制，重新启动或卸载服务。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#查看状态</span></span><br><span class="line">sudo zerotier-cli status</span><br><span class="line"></span><br><span class="line"><span class="comment">##加入网络</span></span><br><span class="line">sudo zerotier-cli <span class="built_in">join</span> 9f77fc393e83973e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 离开网络</span></span><br><span class="line">sudo zerotier-cli leave <span class="comment">################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出整个网络中的所有节点</span></span><br><span class="line">sudo zerotier-cli listnetworks</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用launchctl 添加启动服务</span></span><br><span class="line"><span class="comment">#添加启动服务</span></span><br><span class="line">sudo launchctl load /Library/LaunchDaemons/com.zerotier.one.plist</span><br><span class="line"><span class="comment">#卸载启动服务</span></span><br><span class="line">sudo launchctl unload /Library/LaunchDaemons/com.zerotier.one.plist</span><br><span class="line"></span><br><span class="line"><span class="comment">#卸载ZeroTier</span></span><br><span class="line">sudo <span class="string">&quot;/Library/Application Support/ZeroTier/One/uninstall.sh&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Zerotier one</tag>
       </tags>
   </entry>
   <entry>
@@ -288,6 +300,29 @@
       </tags>
   </entry>
   <entry>
+    <title>第一二章K8s核心概念和集群搭建</title>
+    <url>/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h2 id="1-搭建一个k8s集群"><a href="#1-搭建一个k8s集群" class="headerlink" title="1. 搭建一个k8s集群"></a>1. 搭建一个k8s集群</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[master root ~]<span class="comment"># kubectl get no -owide</span></span><br><span class="line">NAME     STATUS   ROLES                  AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                           KERNEL-VERSION                CONTAINER-RUNTIME</span><br><span class="line">master   Ready    control-plane,master   13d   v1.22.7   192.168.123.200   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br><span class="line">node     Ready    &lt;none&gt;                 13d   v1.22.7   192.168.123.220   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-新建一个命名空间，创建一个deployment并暴露Service"><a href="#2-新建一个命名空间，创建一个deployment并暴露Service" class="headerlink" title="2.新建一个命名空间，创建一个deployment并暴露Service"></a>2.新建一个命名空间，创建一个deployment并暴露Service</h2><ul>
+<li>命名空间： aliang-cka</li>
+<li>名称： web</li>
+<li>镜像： nginx</li>
+</ul>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新建一个命名空间</span></span><br><span class="line">kubectl create namespace aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用kubens切换到aliang-cka这个命名空间</span></span><br><span class="line">kubens aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建deployment</span></span><br><span class="line">kubectl create deployment web --image=nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看web这个deployment创建成功没有</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get deployments.apps web </span></span><br><span class="line">NAME   READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">web    1/1     1            1           7m23s</span><br><span class="line">[master root ~]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">web-96d5df5c8-pj8cg   1/1     Running   0          7m30s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露一个服务</span></span><br><span class="line">kubectl expose deployment web --port=80 --target-port=80 --<span class="built_in">type</span>=NodePort</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问验证</span></span><br><span class="line">[master root ~]<span class="comment"># curl 10.83.28.128|grep title</span></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   615  100   615    0     0   300k      0 --:--:-- --:--:-- --:--:--  300k</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-列出命名空间下指定标签pod"><a href="#3-列出命名空间下指定标签pod" class="headerlink" title="3.列出命名空间下指定标签pod"></a>3.列出命名空间下指定标签pod</h2><p>命名空间: kube-system</p>
+<p>标签: k8s-app&#x3D;kube-dns</p>
+<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查询pod,-n=kube-system,-l=k8s-app=kube-dns</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns</span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看完整标签</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns --show-labels </span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE   LABELS</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>k8s</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>macOS显示隐藏文件</title>
     <url>/2022/02/22/macOS%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6/</url>
     <content><![CDATA[<h2 id="苹果Mac操作系统下怎么显示隐藏文件"><a href="#苹果Mac操作系统下怎么显示隐藏文件" class="headerlink" title="苹果Mac操作系统下怎么显示隐藏文件"></a>苹果Mac操作系统下怎么显示隐藏文件</h2><br/>
@@ -319,29 +354,6 @@
 ]]></content>
       <tags>
         <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第一二章K8s核心概念和集群搭建</title>
-    <url>/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<h2 id="1-搭建一个k8s集群"><a href="#1-搭建一个k8s集群" class="headerlink" title="1. 搭建一个k8s集群"></a>1. 搭建一个k8s集群</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[master root ~]<span class="comment"># kubectl get no -owide</span></span><br><span class="line">NAME     STATUS   ROLES                  AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                           KERNEL-VERSION                CONTAINER-RUNTIME</span><br><span class="line">master   Ready    control-plane,master   13d   v1.22.7   192.168.123.200   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br><span class="line">node     Ready    &lt;none&gt;                 13d   v1.22.7   192.168.123.220   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-新建一个命名空间，创建一个deployment并暴露Service"><a href="#2-新建一个命名空间，创建一个deployment并暴露Service" class="headerlink" title="2.新建一个命名空间，创建一个deployment并暴露Service"></a>2.新建一个命名空间，创建一个deployment并暴露Service</h2><ul>
-<li>命名空间： aliang-cka</li>
-<li>名称： web</li>
-<li>镜像： nginx</li>
-</ul>
-<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新建一个命名空间</span></span><br><span class="line">kubectl create namespace aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用kubens切换到aliang-cka这个命名空间</span></span><br><span class="line">kubens aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建deployment</span></span><br><span class="line">kubectl create deployment web --image=nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看web这个deployment创建成功没有</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get deployments.apps web </span></span><br><span class="line">NAME   READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">web    1/1     1            1           7m23s</span><br><span class="line">[master root ~]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">web-96d5df5c8-pj8cg   1/1     Running   0          7m30s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露一个服务</span></span><br><span class="line">kubectl expose deployment web --port=80 --target-port=80 --<span class="built_in">type</span>=NodePort</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问验证</span></span><br><span class="line">[master root ~]<span class="comment"># curl 10.83.28.128|grep title</span></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   615  100   615    0     0   300k      0 --:--:-- --:--:-- --:--:--  300k</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-列出命名空间下指定标签pod"><a href="#3-列出命名空间下指定标签pod" class="headerlink" title="3.列出命名空间下指定标签pod"></a>3.列出命名空间下指定标签pod</h2><p>命名空间: kube-system</p>
-<p>标签: k8s-app&#x3D;kube-dns</p>
-<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查询pod,-n=kube-system,-l=k8s-app=kube-dns</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns</span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看完整标签</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns --show-labels </span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE   LABELS</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>k8s</tag>
       </tags>
   </entry>
   <entry>
@@ -398,32 +410,6 @@
       </tags>
   </entry>
   <entry>
-    <title>第六章：K8s网络-Service与Ingress篇</title>
-    <url>/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/</url>
-    <content><![CDATA[<h2 id="1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问"><a href="#1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问" class="headerlink" title="1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问"></a>1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问</h2><ul>
-<li>名称: web-service</li>
-<li>pod名称: web</li>
-<li>容器端口: 80</li>
-</ul>
-<h3 id="答"><a href="#答" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看pod的标签</span></span><br><span class="line">kubectl get po web -owide --showlable</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建service,选择pod的标签</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-任意名称创建deployment和service-使用busybox容器nslookup解析service"><a href="#2-任意名称创建deployment和service-使用busybox容器nslookup解析service" class="headerlink" title="2.任意名称创建deployment和service,使用busybox容器nslookup解析service"></a>2.任意名称创建deployment和service,使用busybox容器nslookup解析service</h2><h3 id="答-1"><a href="#答-1" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.列出命名空间下,某个service关联的所有pod,并将pod名称写到/opt/pod.txt中(使用标签筛选)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 答:</span></span><br><span class="line"></span><br><span class="line">```bash</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-使用ingress将美女示例应用暴露到外部访问"><a href="#4-使用ingress将美女示例应用暴露到外部访问" class="headerlink" title="4.使用ingress将美女示例应用暴露到外部访问"></a>4.使用ingress将美女示例应用暴露到外部访问</h2><ul>
-<li>镜像: lizhenliang&#x2F;java-demo</li>
-</ul>
-<h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>k8s</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>第四章：K8s管理应用生命周期-Pod篇</title>
     <url>/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Pod%E7%AF%87/</url>
     <content><![CDATA[<h2 id="1-创建一个4容器pod"><a href="#1-创建一个4容器pod" class="headerlink" title="1.创建一个4容器pod"></a>1.创建一个4容器pod</h2><p>容器列表:</p>
@@ -459,6 +445,32 @@
 <li>文件路径: &#x2F;tmp&#x2F;test.sock</li>
 </ul>
 <h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">run:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">    <span class="attr">args:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/bin/bash</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">-c</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">touch</span> <span class="string">/tmp/test.sock;</span> <span class="string">sleep</span> <span class="number">600</span><span class="string">;</span> </span><br><span class="line">    <span class="attr">livenessProbe:</span></span><br><span class="line">      <span class="attr">exec:</span></span><br><span class="line">        <span class="attr">command:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">cat</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">/tmp/test.sock</span></span><br><span class="line">      <span class="attr">initialDelaySeconds:</span> <span class="number">0</span></span><br><span class="line">      <span class="attr">periodSeconds:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>k8s</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第六章：K8s网络-Service与Ingress篇</title>
+    <url>/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/</url>
+    <content><![CDATA[<h2 id="1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问"><a href="#1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问" class="headerlink" title="1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问"></a>1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问</h2><ul>
+<li>名称: web-service</li>
+<li>pod名称: web</li>
+<li>容器端口: 80</li>
+</ul>
+<h3 id="答"><a href="#答" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看pod的标签</span></span><br><span class="line">kubectl get po web -owide --showlable</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建service,选择pod的标签</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-任意名称创建deployment和service-使用busybox容器nslookup解析service"><a href="#2-任意名称创建deployment和service-使用busybox容器nslookup解析service" class="headerlink" title="2.任意名称创建deployment和service,使用busybox容器nslookup解析service"></a>2.任意名称创建deployment和service,使用busybox容器nslookup解析service</h2><h3 id="答-1"><a href="#答-1" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.列出命名空间下,某个service关联的所有pod,并将pod名称写到/opt/pod.txt中(使用标签筛选)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 答:</span></span><br><span class="line"></span><br><span class="line">```bash</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-使用ingress将美女示例应用暴露到外部访问"><a href="#4-使用ingress将美女示例应用暴露到外部访问" class="headerlink" title="4.使用ingress将美女示例应用暴露到外部访问"></a>4.使用ingress将美女示例应用暴露到外部访问</h2><ul>
+<li>镜像: lizhenliang&#x2F;java-demo</li>
+</ul>
+<h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>

@@ -13,11 +13,13 @@
 <meta property="og:site_name" content="识途老码">
 <meta property="og:description" content="编译安装socks5安装编译环境1yum -y install gcc gcc-c++ automake make pam-devel openldap-devel cyrus-sasl-devel openssl-devel    下载源码包项目地址: http:&#x2F;&#x2F;ss5.sourceforge.net&#x2F;software.htm 1wget https:&#x2F;&#x2F;jaist.dl.sourcefor">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://omaidb.github.io/image/Centos7%E6%90%AD%E5%BB%BAsocks5/image-20220423222235864.png">
 <meta property="article:published_time" content="2022-04-23T01:45:50.000Z">
-<meta property="article:modified_time" content="2022-04-23T03:02:17.056Z">
+<meta property="article:modified_time" content="2022-04-23T14:26:47.082Z">
 <meta property="article:author" content="Miles Lee">
 <meta property="article:tag" content="socks5">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://omaidb.github.io/image/Centos7%E6%90%AD%E5%BB%BAsocks5/image-20220423222235864.png">
   
     <link rel="alternate" href="/atom.xml" title="识途老码" type="application/atom+xml">
   
@@ -130,13 +132,25 @@
 
 
 
+
+
+<h3 id="开机无法自启动处理"><a href="#开机无法自启动处理" class="headerlink" title="开机无法自启动处理"></a>开机无法自启动处理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看服务详情</span></span><br><span class="line">systemctl status ss5 -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 错误提示</span></span><br><span class="line">Can’t create pid file /var/run/ss5/ss5.pid</span><br><span class="line">Can’t <span class="built_in">unlink</span> pid file /var/run/ss5/ss5.pid</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>由于每次重启后<code>/var/run/ss5/</code>文件夹都会被删除，所以需要修改<code>/etc/init.d/ss5</code>，</p>
+<p>在<code>start</code>段加上一句 <code>mkdir /var/run/ss5/</code>,</p>
+<p>将<code>stop</code>段的<code>rm -f /var/run/ss5/ss5.pid</code>改为<code>rm -rf /var/run/ss5/</code></p>
+<p><img src="/image/Centos7%E6%90%AD%E5%BB%BAsocks5/image-20220423222235864.png" alt="image-20220423222235864"></p>
 <h3 id="查看本地端口监听状态"><a href="#查看本地端口监听状态" class="headerlink" title="查看本地端口监听状态"></a>查看本地端口监听状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss -tunlp|grep 1080</span><br></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/" data-id="cl2bxjcac0001yc9x2p1dehob" data-title="Centos7安装socks5" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/" data-id="cl2bygphu00019w9x462v471p" data-title="Centos7安装socks5" class="article-share-link">分享</a>
       
       
       

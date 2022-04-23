@@ -118,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E5%AE%89%E8%A3%85hexo/" data-id="cl2bxjca70000yc9x8v0pd3sb" data-title="Centos7安装hexo" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E5%AE%89%E8%A3%85hexo/" data-id="cl2bygphm00009w9x21llhj7p" data-title="Centos7安装hexo" class="article-share-link">分享</a>
       
       
       
@@ -184,13 +184,25 @@
 
 
 
+
+
+<h3 id="开机无法自启动处理"><a href="#开机无法自启动处理" class="headerlink" title="开机无法自启动处理"></a>开机无法自启动处理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看服务详情</span></span><br><span class="line">systemctl status ss5 -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 错误提示</span></span><br><span class="line">Can’t create pid file /var/run/ss5/ss5.pid</span><br><span class="line">Can’t <span class="built_in">unlink</span> pid file /var/run/ss5/ss5.pid</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>由于每次重启后<code>/var/run/ss5/</code>文件夹都会被删除，所以需要修改<code>/etc/init.d/ss5</code>，</p>
+<p>在<code>start</code>段加上一句 <code>mkdir /var/run/ss5/</code>,</p>
+<p>将<code>stop</code>段的<code>rm -f /var/run/ss5/ss5.pid</code>改为<code>rm -rf /var/run/ss5/</code></p>
+<p><img src="/image/Centos7%E6%90%AD%E5%BB%BAsocks5/image-20220423222235864.png" alt="image-20220423222235864"></p>
 <h3 id="查看本地端口监听状态"><a href="#查看本地端口监听状态" class="headerlink" title="查看本地端口监听状态"></a>查看本地端口监听状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss -tunlp|grep 1080</span><br></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/" data-id="cl2bxjcac0001yc9x2p1dehob" data-title="Centos7安装socks5" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/" data-id="cl2bygphu00019w9x462v471p" data-title="Centos7安装socks5" class="article-share-link">分享</a>
       
       
       
@@ -253,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%BA%94%E7%AB%A0-k8s%E8%B0%83%E5%BA%A6-pod%E8%B0%83%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%AF%87/" data-id="cl2bxjcap000kyc9x1p1a6r80" data-title="第五章-k8s调度-pod调度控制篇" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%BA%94%E7%AB%A0-k8s%E8%B0%83%E5%BA%A6-pod%E8%B0%83%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%AF%87/" data-id="cl2bygpi9000k9w9x5voh0fbp" data-title="第五章-k8s调度-pod调度控制篇" class="article-share-link">分享</a>
       
       
       
@@ -327,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Pod%E7%AF%87/" data-id="cl2bxjcax000zyc9xdhty38w1" data-title="第四章：K8s管理应用生命周期-Pod篇" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Pod%E7%AF%87/" data-id="cl2bygpi9000m9w9xczqpc7nr" data-title="第四章：K8s管理应用生命周期-Pod篇" class="article-share-link">分享</a>
       
       
       
@@ -393,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Deployment%E7%AF%87/" data-id="cl2bxjcay0010yc9x5hwi91az" data-title="第四章：K8s管理应用生命周期-Deployment篇" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Deployment%E7%AF%87/" data-id="cl2bygpib000q9w9xcsrj5dqp" data-title="第四章：K8s管理应用生命周期-Deployment篇" class="article-share-link">分享</a>
       
       
       
@@ -447,7 +459,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/" data-id="cl2bxjcao000iyc9xgcro3hqr" data-title="第三章：K8s监控与日志" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/" data-id="cl2bygpi8000i9w9xcqrc0arf" data-title="第三章：K8s监控与日志" class="article-share-link">分享</a>
       
       
       
@@ -505,7 +517,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/" data-id="cl2bxjcaq000myc9xhq2ebjxl" data-title="第六章：K8s网络-Service与Ingress篇" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/" data-id="cl2bygpia000n9w9xa9ov3zhp" data-title="第六章：K8s网络-Service与Ingress篇" class="article-share-link">分享</a>
       
       
       
@@ -560,7 +572,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" data-id="cl2bxjcan000gyc9x5f691ok8" data-title="第一二章K8s核心概念和集群搭建" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" data-id="cl2bygpi4000e9w9xdpxo4jsz" data-title="第一二章K8s核心概念和集群搭建" class="article-share-link">分享</a>
       
       
       
@@ -629,7 +641,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/11/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="cl2bxjcak0009yc9x40kf02pc" data-title="遇到的k8s面试题" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/11/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="cl2bygpi200099w9xfac57acp" data-title="遇到的k8s面试题" class="article-share-link">分享</a>
       
       
       
@@ -687,7 +699,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" data-id="cl2bxjcah0004yc9x3les8uqh" data-title="Zerotier one安装教程" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" data-id="cl2bygphy00039w9xesu2gv1w" data-title="Zerotier one安装教程" class="article-share-link">分享</a>
       
       
       
