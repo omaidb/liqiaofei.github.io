@@ -6,15 +6,15 @@
   
   <title>Centos7安装hexo | 识途老码</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="编译安装nodejs-LTSnodejs地址: https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F;download&#x2F; 123# 安装编译环境依赖包--可以不执行## centos7源中的gccg++版本只有4.8.5yum install gcc-c++ -y  升级gcc和g++版本到5.2.012345678910111213141516171819202122cd &#x2F;usr&#x2F;local&#x2F;sr">
+  <meta name="description" content="yum安装nodejs LTS V16nodejs地址: https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F;download&#x2F; 12345# 安装yum源curl -fsSL https:&#x2F;&#x2F;rpm.nodesource.com&#x2F;setup_lts.x | bash -# yum安装nodejssudo yum -y install nodejs      查看node和npm版本12node -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Centos7安装hexo">
 <meta property="og:url" content="https://omaidb.github.io/2022/04/23/Centos7%E5%AE%89%E8%A3%85hexo/index.html">
 <meta property="og:site_name" content="识途老码">
-<meta property="og:description" content="编译安装nodejs-LTSnodejs地址: https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F;download&#x2F; 123# 安装编译环境依赖包--可以不执行## centos7源中的gccg++版本只有4.8.5yum install gcc-c++ -y  升级gcc和g++版本到5.2.012345678910111213141516171819202122cd &#x2F;usr&#x2F;local&#x2F;sr">
+<meta property="og:description" content="yum安装nodejs LTS V16nodejs地址: https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F;download&#x2F; 12345# 安装yum源curl -fsSL https:&#x2F;&#x2F;rpm.nodesource.com&#x2F;setup_lts.x | bash -# yum安装nodejssudo yum -y install nodejs      查看node和npm版本12node -">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-23T01:45:50.000Z">
-<meta property="article:modified_time" content="2022-04-23T13:59:50.656Z">
+<meta property="article:modified_time" content="2022-04-23T14:01:01.042Z">
 <meta property="article:author" content="Miles Lee">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
@@ -100,18 +100,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="编译安装nodejs-LTS"><a href="#编译安装nodejs-LTS" class="headerlink" title="编译安装nodejs-LTS"></a>编译安装nodejs-LTS</h2><p>nodejs地址: <a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/download/">https://nodejs.org/zh-cn/download/</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装编译环境依赖包--可以不执行</span></span><br><span class="line"><span class="comment">## centos7源中的gccg++版本只有4.8.5</span></span><br><span class="line">yum install gcc-c++ -y</span><br></pre></td></tr></table></figure>
-
-<h3 id="升级gcc和g-版本到5-2-0"><a href="#升级gcc和g-版本到5-2-0" class="headerlink" title="升级gcc和g++版本到5.2.0"></a>升级gcc和g++版本到5.2.0</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/src</span><br><span class="line"><span class="comment"># 下载gcc5.2.0源码</span></span><br><span class="line">wget http://ftp.gnu.org/gnu/gcc/gcc-5.2.0/gcc-5.2.0.tar.bz2</span><br><span class="line">tar -jxvf gcc-5.2.0.tar.bz2</span><br><span class="line"><span class="comment"># 进入gcc目录安装</span></span><br><span class="line"><span class="built_in">cd</span> gcc-5.2.0</span><br><span class="line"><span class="comment"># 下载某些依赖包</span></span><br><span class="line">./contrib/download_prerequisites</span><br><span class="line"><span class="comment"># 创建bulid文件夹</span></span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">../configure --prefix=/usr/local/gcc --enable-languages=c,c++ --disable-multilib</span><br><span class="line"><span class="comment"># 编译安装,此过程耗时较长</span></span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="comment"># 修改软连接</span></span><br><span class="line"><span class="built_in">mv</span> /usr/bin/gcc /usr/bin/gcc_bak</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/gcc/bin/gcc /usr/bin/gcc</span><br><span class="line"><span class="built_in">mv</span> /usr/bin/g++ /usr/bin/g++_bak</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/gcc/bin/g++ /usr/bin/g++</span><br><span class="line"><span class="comment"># 查看升级后版本</span></span><br><span class="line">gcc --verson</span><br><span class="line">g++ --version</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载源码包</span></span><br><span class="line">wget -c https://nodejs.org/dist/v16.14.2/node-v16.14.2.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入并解压</span></span><br><span class="line">tar xvf node-v16.14.2.tar.gz &amp;&amp; <span class="built_in">cd</span> node-v16.14.2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译安装</span></span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="yum安装nodejs-LTS-V16"><a href="#yum安装nodejs-LTS-V16" class="headerlink" title="yum安装nodejs LTS V16"></a>yum安装nodejs LTS V16</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装yum源</span></span><br><span class="line">curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum安装nodejs</span></span><br><span class="line">sudo yum -y install nodejs</span><br></pre></td></tr></table></figure>
+        <h2 id="yum安装nodejs-LTS-V16"><a href="#yum安装nodejs-LTS-V16" class="headerlink" title="yum安装nodejs LTS V16"></a>yum安装nodejs LTS V16</h2><p>nodejs地址: <a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/download/">https://nodejs.org/zh-cn/download/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装yum源</span></span><br><span class="line">curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum安装nodejs</span></span><br><span class="line">sudo yum -y install nodejs</span><br></pre></td></tr></table></figure>
 
 
 
@@ -131,7 +121,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E5%AE%89%E8%A3%85hexo/" data-id="cl2bxhxsh0000n09xdxho2qv9" data-title="Centos7安装hexo" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E5%AE%89%E8%A3%85hexo/" data-id="cl2bxjca70000yc9x8v0pd3sb" data-title="Centos7安装hexo" class="article-share-link">分享</a>
       
       
       
@@ -210,11 +200,11 @@
           </li>
         
           <li>
-            <a href="/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Deployment%E7%AF%87/">第四章：K8s管理应用生命周期-Deployment篇</a>
+            <a href="/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Pod%E7%AF%87/">第四章：K8s管理应用生命周期-Pod篇</a>
           </li>
         
           <li>
-            <a href="/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Pod%E7%AF%87/">第四章：K8s管理应用生命周期-Pod篇</a>
+            <a href="/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Deployment%E7%AF%87/">第四章：K8s管理应用生命周期-Deployment篇</a>
           </li>
         
       </ul>
