@@ -14,7 +14,7 @@
 <meta property="og:description" content="编译安装socks5安装编译环境1yum -y install gcc gcc-c++ automake make pam-devel openldap-devel cyrus-sasl-devel openssl-devel    下载源码包项目地址: http:&#x2F;&#x2F;ss5.sourceforge.net&#x2F;software.htm 1wget https:&#x2F;&#x2F;jaist.dl.sourcefor">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-23T01:45:50.000Z">
-<meta property="article:modified_time" content="2022-04-23T02:34:16.695Z">
+<meta property="article:modified_time" content="2022-04-23T03:02:17.056Z">
 <meta property="article:author" content="Miles Lee">
 <meta property="article:tag" content="socks5">
 <meta name="twitter:card" content="summary">
@@ -122,7 +122,7 @@
 
 
 
-<h3 id="xxxxxxxxxx-查询pod-n-x3D-kube-system-l-x3D-k8s-app-x3D-kube-dns-master-root-kubectl-get-po-n-kube-system-l-k8s-app-x3D-kube-dnsNAME-READY-STATUS-RESTARTS-AGEcoredns-78fcd69978-8kjtl-1-x2F-1-Running-1-10d-ago-12dcoredns-78fcd69978-jkxkd-1-x2F-1-Running-1-10d-ago-12d​-查看完整标签-master-root-kubectl-get-po-n-kube-system-l-k8s-app-x3D-kube-dns-–show-labels-NAME-READY-STATUS-RESTARTS-AGE-LABELScoredns-78fcd69978-8kjtl-1-x2F-1-Running-1-10d-ago-12d-k8s-app-x3D-kube-dns-pod-template-hash-x3D-78fcd69978coredns-78fcd69978-jkxkd-1-x2F-1-Running-1-10d-ago-12d-k8s-app-x3D-kube-dns-pod-template-hash-x3D-78fcd69978bash"><a href="#xxxxxxxxxx-查询pod-n-x3D-kube-system-l-x3D-k8s-app-x3D-kube-dns-master-root-kubectl-get-po-n-kube-system-l-k8s-app-x3D-kube-dnsNAME-READY-STATUS-RESTARTS-AGEcoredns-78fcd69978-8kjtl-1-x2F-1-Running-1-10d-ago-12dcoredns-78fcd69978-jkxkd-1-x2F-1-Running-1-10d-ago-12d​-查看完整标签-master-root-kubectl-get-po-n-kube-system-l-k8s-app-x3D-kube-dns-–show-labels-NAME-READY-STATUS-RESTARTS-AGE-LABELScoredns-78fcd69978-8kjtl-1-x2F-1-Running-1-10d-ago-12d-k8s-app-x3D-kube-dns-pod-template-hash-x3D-78fcd69978coredns-78fcd69978-jkxkd-1-x2F-1-Running-1-10d-ago-12d-k8s-app-x3D-kube-dns-pod-template-hash-x3D-78fcd69978bash" class="headerlink" title="xxxxxxxxxx # 查询pod,-n&#x3D;kube-system,-l&#x3D;k8s-app&#x3D;kube-dns[master root ~]# kubectl get po -n kube-system -l k8s-app&#x3D;kube-dnsNAME                       READY   STATUS    RESTARTS      AGEcoredns-78fcd69978-8kjtl   1&#x2F;1     Running   1 (10d ago)   12dcoredns-78fcd69978-jkxkd   1&#x2F;1     Running   1 (10d ago)   12d​# 查看完整标签[master root ~]# kubectl get po -n kube-system -l k8s-app&#x3D;kube-dns –show-labels NAME                       READY   STATUS    RESTARTS      AGE   LABELScoredns-78fcd69978-8kjtl   1&#x2F;1     Running   1 (10d ago)   12d   k8s-app&#x3D;kube-dns,pod-template-hash&#x3D;78fcd69978coredns-78fcd69978-jkxkd   1&#x2F;1     Running   1 (10d ago)   12d   k8s-app&#x3D;kube-dns,pod-template-hash&#x3D;78fcd69978bash"></a>xxxxxxxxxx # 查询pod,-n&#x3D;kube-system,-l&#x3D;k8s-app&#x3D;kube-dns[master root ~]# kubectl get po -n kube-system -l k8s-app&#x3D;kube-dnsNAME                       READY   STATUS    RESTARTS      AGEcoredns-78fcd69978-8kjtl   1&#x2F;1     Running   1 (10d ago)   12dcoredns-78fcd69978-jkxkd   1&#x2F;1     Running   1 (10d ago)   12d​# 查看完整标签[master root ~]# kubectl get po -n kube-system -l k8s-app&#x3D;kube-dns –show-labels NAME                       READY   STATUS    RESTARTS      AGE   LABELScoredns-78fcd69978-8kjtl   1&#x2F;1     Running   1 (10d ago)   12d   k8s-app&#x3D;kube-dns,pod-template-hash&#x3D;78fcd69978coredns-78fcd69978-jkxkd   1&#x2F;1     Running   1 (10d ago)   12d   k8s-app&#x3D;kube-dns,pod-template-hash&#x3D;78fcd69978bash</h3><p><code>vim /etc/sysconfig/ss5</code></p>
+<h3 id="修改暴露的端口"><a href="#修改暴露的端口" class="headerlink" title="修改暴露的端口"></a>修改暴露的端口</h3><p><code>vim /etc/sysconfig/ss5</code></p>
 <p>添加一行，-b后面的参数代表监听的ip地址和端口号,-u 后面的参数表示本地计算机以哪个账户连接</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Add startup option here</span></span><br><span class="line">SS5_OPTS=<span class="string">&quot; -u ssproxy -b 0.0.0.0:1080&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -136,7 +136,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/" data-id="cl2b9yhjz0000os9x8kq11q4t" data-title="Centos7安装socks5" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/" data-id="cl2ba0ej00000zg9x9jri3w2z" data-title="Centos7安装socks5" class="article-share-link">分享</a>
       
       
       
