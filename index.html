@@ -75,6 +75,78 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Centos7搭建socks5" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/" class="article-date">
+  <time class="dt-published" datetime="2022-04-23T01:45:50.000Z" itemprop="datePublished">2022-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/">Centos7安装socks5</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="编译安装socks5"><a href="#编译安装socks5" class="headerlink" title="编译安装socks5"></a>编译安装socks5</h2><h3 id="安装编译环境"><a href="#安装编译环境" class="headerlink" title="安装编译环境"></a>安装编译环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-devel cyrus-sasl-devel openssl-devel</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="下载源码包"><a href="#下载源码包" class="headerlink" title="下载源码包"></a>下载源码包</h3><p>项目地址: <a target="_blank" rel="noopener" href="http://ss5.sourceforge.net/software.htm">http://ss5.sourceforge.net/software.htm</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/ss5/ss5/3.8.9-8/ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf ss5-3.8.9-8.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ss5-3.8.9/</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改配置文件ss5-conf"><a href="#修改配置文件ss5-conf" class="headerlink" title="修改配置文件ss5.conf"></a>修改配置文件ss5.conf</h3><p><code>vim /etc/opt/ss5/ss5.conf</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#auth段  SHost SPort  Authentication</span></span><br><span class="line"><span class="comment">#认证    源地址段 源端口  认证方式</span></span><br><span class="line"><span class="comment">#认证    允许所有地址所有端口访问  以用户密码验证</span></span><br><span class="line">auth 0.0.0.0/0 - u</span><br><span class="line"></span><br><span class="line"><span class="comment">#permit段 Auth    SHost    SPort  DHost       DPort     Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="comment">#permit段 认证方式 源地址段  源端口  目的地地址段 目的地端口 Fixup   Group   Band    ExpDate</span></span><br><span class="line">permit u 0.0.0.0/0 - 0.0.0.0/0 - - - - -</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加用户名和密码"><a href="#添加用户名和密码" class="headerlink" title="添加用户名和密码"></a>添加用户名和密码</h3><p><code>vim /etc/opt/ss5/ss5.passwd</code></p>
+<p>一行一个账号，用户名和密码之间用空格间隔</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user1 mima123</span><br><span class="line">user2 mima123</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="创建服务用户"><a href="#创建服务用户" class="headerlink" title="创建服务用户"></a>创建服务用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建服务账号ssproxy</span></span><br><span class="line">useradd -M -s /sbin/nologin ssproxy</span><br><span class="line"><span class="comment">#-M 不指定home</span></span><br><span class="line"><span class="comment">#-s 指定shell为nologin</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="xxxxxxxxxx-查询pod-n-x3D-kube-system-l-x3D-k8s-app-x3D-kube-dns-master-root-kubectl-get-po-n-kube-system-l-k8s-app-x3D-kube-dnsNAME-READY-STATUS-RESTARTS-AGEcoredns-78fcd69978-8kjtl-1-x2F-1-Running-1-10d-ago-12dcoredns-78fcd69978-jkxkd-1-x2F-1-Running-1-10d-ago-12d​-查看完整标签-master-root-kubectl-get-po-n-kube-system-l-k8s-app-x3D-kube-dns-–show-labels-NAME-READY-STATUS-RESTARTS-AGE-LABELScoredns-78fcd69978-8kjtl-1-x2F-1-Running-1-10d-ago-12d-k8s-app-x3D-kube-dns-pod-template-hash-x3D-78fcd69978coredns-78fcd69978-jkxkd-1-x2F-1-Running-1-10d-ago-12d-k8s-app-x3D-kube-dns-pod-template-hash-x3D-78fcd69978bash"><a href="#xxxxxxxxxx-查询pod-n-x3D-kube-system-l-x3D-k8s-app-x3D-kube-dns-master-root-kubectl-get-po-n-kube-system-l-k8s-app-x3D-kube-dnsNAME-READY-STATUS-RESTARTS-AGEcoredns-78fcd69978-8kjtl-1-x2F-1-Running-1-10d-ago-12dcoredns-78fcd69978-jkxkd-1-x2F-1-Running-1-10d-ago-12d​-查看完整标签-master-root-kubectl-get-po-n-kube-system-l-k8s-app-x3D-kube-dns-–show-labels-NAME-READY-STATUS-RESTARTS-AGE-LABELScoredns-78fcd69978-8kjtl-1-x2F-1-Running-1-10d-ago-12d-k8s-app-x3D-kube-dns-pod-template-hash-x3D-78fcd69978coredns-78fcd69978-jkxkd-1-x2F-1-Running-1-10d-ago-12d-k8s-app-x3D-kube-dns-pod-template-hash-x3D-78fcd69978bash" class="headerlink" title="xxxxxxxxxx # 查询pod,-n&#x3D;kube-system,-l&#x3D;k8s-app&#x3D;kube-dns[master root ~]# kubectl get po -n kube-system -l k8s-app&#x3D;kube-dnsNAME                       READY   STATUS    RESTARTS      AGEcoredns-78fcd69978-8kjtl   1&#x2F;1     Running   1 (10d ago)   12dcoredns-78fcd69978-jkxkd   1&#x2F;1     Running   1 (10d ago)   12d​# 查看完整标签[master root ~]# kubectl get po -n kube-system -l k8s-app&#x3D;kube-dns –show-labels NAME                       READY   STATUS    RESTARTS      AGE   LABELScoredns-78fcd69978-8kjtl   1&#x2F;1     Running   1 (10d ago)   12d   k8s-app&#x3D;kube-dns,pod-template-hash&#x3D;78fcd69978coredns-78fcd69978-jkxkd   1&#x2F;1     Running   1 (10d ago)   12d   k8s-app&#x3D;kube-dns,pod-template-hash&#x3D;78fcd69978bash"></a>xxxxxxxxxx # 查询pod,-n&#x3D;kube-system,-l&#x3D;k8s-app&#x3D;kube-dns[master root ~]# kubectl get po -n kube-system -l k8s-app&#x3D;kube-dnsNAME                       READY   STATUS    RESTARTS      AGEcoredns-78fcd69978-8kjtl   1&#x2F;1     Running   1 (10d ago)   12dcoredns-78fcd69978-jkxkd   1&#x2F;1     Running   1 (10d ago)   12d​# 查看完整标签[master root ~]# kubectl get po -n kube-system -l k8s-app&#x3D;kube-dns –show-labels NAME                       READY   STATUS    RESTARTS      AGE   LABELScoredns-78fcd69978-8kjtl   1&#x2F;1     Running   1 (10d ago)   12d   k8s-app&#x3D;kube-dns,pod-template-hash&#x3D;78fcd69978coredns-78fcd69978-jkxkd   1&#x2F;1     Running   1 (10d ago)   12d   k8s-app&#x3D;kube-dns,pod-template-hash&#x3D;78fcd69978bash</h3><p><code>vim /etc/sysconfig/ss5</code></p>
+<p>添加一行，-b后面的参数代表监听的ip地址和端口号,-u 后面的参数表示本地计算机以哪个账户连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Add startup option here</span></span><br><span class="line">SS5_OPTS=<span class="string">&quot; -u ssproxy -b 0.0.0.0:1080&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="添加权限并设置开机自启动"><a href="#添加权限并设置开机自启动" class="headerlink" title="添加权限并设置开机自启动"></a>添加权限并设置开机自启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加可执行权限</span></span><br><span class="line"><span class="built_in">chmod</span> +x /etc/init.d/ss5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入服务</span></span><br><span class="line">chkconfig --add ss5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机自启动并现在启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> --now ss5</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="查看本地端口监听状态"><a href="#查看本地端口监听状态" class="headerlink" title="查看本地端口监听状态"></a>查看本地端口监听状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss -tunlp|grep 1080</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://omaidb.github.io/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/" data-id="cl2b9wh760000no9x8jgyclwu" data-title="Centos7安装socks5" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socks5/" rel="tag">socks5</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第五章-k8s调度-pod调度控制篇" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/03/30/%E7%AC%AC%E4%BA%94%E7%AB%A0-k8s%E8%B0%83%E5%BA%A6-pod%E8%B0%83%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%AF%87/" class="article-date">
@@ -124,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%BA%94%E7%AB%A0-k8s%E8%B0%83%E5%BA%A6-pod%E8%B0%83%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%AF%87/" data-id="cl1d2kqat000fe89x1or889zz" data-title="第五章-k8s调度-pod调度控制篇" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%BA%94%E7%AB%A0-k8s%E8%B0%83%E5%BA%A6-pod%E8%B0%83%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%AF%87/" data-id="cl2b9wh7p000jno9xcg7kdl4d" data-title="第五章-k8s调度-pod调度控制篇" class="article-share-link">分享</a>
       
       
       
@@ -190,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Deployment%E7%AF%87/" data-id="cl1d2kqb1000re89xb7667536" data-title="第四章：K8s管理应用生命周期-Deployment篇" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Deployment%E7%AF%87/" data-id="cl2b9wh7q000lno9xd6rz3h6z" data-title="第四章：K8s管理应用生命周期-Deployment篇" class="article-share-link">分享</a>
       
       
       
@@ -264,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Pod%E7%AF%87/" data-id="cl1d2kqb2000se89xcp843g5v" data-title="第四章：K8s管理应用生命周期-Pod篇" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Pod%E7%AF%87/" data-id="cl2b9wh7r000mno9xcl5q86l6" data-title="第四章：K8s管理应用生命周期-Pod篇" class="article-share-link">分享</a>
       
       
       
@@ -318,7 +390,65 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/" data-id="cl1d2kqar000de89x5byf7z7v" data-title="第三章：K8s监控与日志" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/" data-id="cl2b9wh7n000fno9xh0yze08n" data-title="第三章：K8s监控与日志" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-第六章：K8s网络-Service与Ingress篇" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/" class="article-date">
+  <time class="dt-published" datetime="2022-03-30T04:45:50.000Z" itemprop="datePublished">2022-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/">第六章：K8s网络-Service与Ingress篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问"><a href="#1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问" class="headerlink" title="1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问"></a>1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问</h2><ul>
+<li>名称: web-service</li>
+<li>pod名称: web</li>
+<li>容器端口: 80</li>
+</ul>
+<h3 id="答"><a href="#答" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看pod的标签</span></span><br><span class="line">kubectl get po web -owide --showlable</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建service,选择pod的标签</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-任意名称创建deployment和service-使用busybox容器nslookup解析service"><a href="#2-任意名称创建deployment和service-使用busybox容器nslookup解析service" class="headerlink" title="2.任意名称创建deployment和service,使用busybox容器nslookup解析service"></a>2.任意名称创建deployment和service,使用busybox容器nslookup解析service</h2><h3 id="答-1"><a href="#答-1" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.列出命名空间下,某个service关联的所有pod,并将pod名称写到/opt/pod.txt中(使用标签筛选)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 答:</span></span><br><span class="line"></span><br><span class="line">```bash</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-使用ingress将美女示例应用暴露到外部访问"><a href="#4-使用ingress将美女示例应用暴露到外部访问" class="headerlink" title="4.使用ingress将美女示例应用暴露到外部访问"></a>4.使用ingress将美女示例应用暴露到外部访问</h2><ul>
+<li>镜像: lizhenliang&#x2F;java-demo</li>
+</ul>
+<h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/" data-id="cl2b9wh7o000hno9x794saqb7" data-title="第六章：K8s网络-Service与Ingress篇" class="article-share-link">分享</a>
       
       
       
@@ -373,7 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" data-id="cl1d2kqaq000be89xc4k1b1x0" data-title="第一二章K8s核心概念和集群搭建" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" data-id="cl2b9wh7l000dno9x4c4n0uj0" data-title="第一二章K8s核心概念和集群搭建" class="article-share-link">分享</a>
       
       
       
@@ -442,7 +572,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/11/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="cl1d2kqam0005e89xf8rph45h" data-title="遇到的k8s面试题" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/11/k8s%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="cl2b9wh7j0009no9x6w385gnn" data-title="遇到的k8s面试题" class="article-share-link">分享</a>
       
       
       
@@ -500,7 +630,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" data-id="cl1d2kqak0003e89xdic54fop" data-title="Zerotier one安装教程" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/10/Zerotier%20one%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" data-id="cl2b9wh7f0003no9xer4f46g2" data-title="Zerotier one安装教程" class="article-share-link">分享</a>
       
       
       
@@ -553,146 +683,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/10/hello-world/" data-id="cl1d2kqag0001e89xgkw5bm1x" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="https://omaidb.github.io/2022/03/10/hello-world/" data-id="cl2b9wh7g0004no9xhj2zhlcz" data-title="Hello World" class="article-share-link">分享</a>
       
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hexo部署gitpage" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/" class="article-date">
-  <time class="dt-published" datetime="2022-03-10T14:45:51.000Z" itemprop="datePublished">2022-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/">hexo部署gitpage</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>参考: <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
-<p><a target="_blank" rel="noopener" href="https://qlzhu.github.io/blog/51941/">https://qlzhu.github.io/blog/51941/</a></p>
-<h2 id="安装npm"><a href="#安装npm" class="headerlink" title="安装npm"></a>安装npm</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install nodejs-lts -y</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo-server，用于预览静态网站</span></span><br><span class="line">npm install hexo-server --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装本地搜索插件</span></span><br><span class="line">npm install hexo-generator-searchdb --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装文章字数统计及阅读时常功能</span></span><br><span class="line">npm install hexo-wordcount --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装图片显示插件(实测没用)</span></span><br><span class="line">npm install hexo-asset-img --save</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># clone代码库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/omaidb/omaidb.github.io.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd 到你的githubpage目录下</span></span><br><span class="line"><span class="built_in">cd</span> omaidb.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化站点</span></span><br><span class="line"><span class="built_in">mkdir</span> blog &amp;&amp; <span class="built_in">cd</span> blog</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将blog目录下的文件全部拷贝到git项目下,拷贝完成后可以删除blog目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将hexo代码上传</span></span><br><span class="line">git add -A</span><br><span class="line">git commit -m <span class="string">&#x27;hexo init&#x27;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="新建一篇文章"><a href="#新建一篇文章" class="headerlink" title="新建一篇文章"></a>新建一篇文章</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands">https://hexo.io/zh-cn/docs/commands</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建一篇文章</span></span><br><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">hexo new <span class="string">&quot;文章标题&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑这个文章</span></span><br><span class="line"><span class="built_in">source</span>\_posts\hexo部署gitpage.md</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="创建一个about-me页面"><a href="#创建一个about-me页面" class="headerlink" title="创建一个about me页面"></a>创建一个about me页面</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page --path about/me <span class="string">&quot;About me&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成静态文件hexo generate</span></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 持续生成静态文件</span></span><br><span class="line">hexo g -w</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成并立即发布文章</span></span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="发表草稿"><a href="#发表草稿" class="headerlink" title="发表草稿"></a>发表草稿</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo publish [layout] &lt;filename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">hexo publish <span class="string">&quot;文章标题&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br><span class="line"><span class="comment"># 会打开http://localhost:4000/</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="常见问题-部署后-网页仍未更新"><a href="#常见问题-部署后-网页仍未更新" class="headerlink" title="常见问题:部署后,网页仍未更新"></a>常见问题:部署后,网页仍未更新</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解决办法清除缓存和已生成的静态文件</span></span><br><span class="line">hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="其他美化"><a href="#其他美化" class="headerlink" title="其他美化"></a>其他美化</h2><p>参考: <a target="_blank" rel="noopener" href="https://blog.csdn.net/as480133937/article/details/100138838">hexo-next主题配置</a></p>
-<h2 id="hexo不显示图片"><a href="#hexo不显示图片" class="headerlink" title="hexo不显示图片"></a>hexo不显示图片</h2><p>找好久,有让装插件的,有改Typora图片路径的,但是都不奏效哈.头疼,还没解决.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/03/10/hexo%E9%83%A8%E7%BD%B2gitpage/" data-id="cl1d2kqal0004e89xcisy7yi3" data-title="hexo部署gitpage" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-macOS剪切文件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/02/22/macOS%E5%89%AA%E5%88%87%E6%96%87%E4%BB%B6/" class="article-date">
-  <time class="dt-published" datetime="2022-02-22T15:59:08.000Z" itemprop="datePublished">2022-02-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/02/22/macOS%E5%89%AA%E5%88%87%E6%96%87%E4%BB%B6/">macOS剪切快捷键</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h3><p>选定源文件，按<code>Command+C</code> 快捷键拷贝到剪贴板</p>
-<br/>
-
-
-
-<h3 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h3><p>转到目标文件夹，按<code>Command+V</code>可将源文件复制到目标文件夹</p>
-<br/>
-
-
-
-<h3 id="剪切文件"><a href="#剪切文件" class="headerlink" title="剪切文件"></a>剪切文件</h3><p>按下<code>Command+Option+V </code>即可将源文件移动到目标文件夹，这相当于实现了windows 下的剪切功能。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://omaidb.github.io/2022/02/22/macOS%E5%89%AA%E5%88%87%E6%96%87%E4%BB%B6/" data-id="cl1d2kqao0008e89xch6z5ybi" data-title="macOS剪切快捷键" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li></ul>
-
     </footer>
   </div>
   
@@ -719,7 +713,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zerotier-one/" rel="tag">Zerotier one</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zerotier-one/" rel="tag">Zerotier one</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socks5/" rel="tag">socks5</a></li></ul>
     </div>
   </div>
 
@@ -729,7 +723,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Zerotier-one/" style="font-size: 10px;">Zerotier one</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/k8s/" style="font-size: 20px;">k8s</a> <a href="/tags/macOS/" style="font-size: 15px;">macOS</a>
+      <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Zerotier-one/" style="font-size: 10px;">Zerotier one</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/k8s/" style="font-size: 20px;">k8s</a> <a href="/tags/macOS/" style="font-size: 15px;">macOS</a> <a href="/tags/socks5/" style="font-size: 10px;">socks5</a>
     </div>
   </div>
 
@@ -738,7 +732,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li></ul>
     </div>
   </div>
 
@@ -749,6 +743,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/">Centos7安装socks5</a>
+          </li>
         
           <li>
             <a href="/2022/03/30/%E7%AC%AC%E4%BA%94%E7%AB%A0-k8s%E8%B0%83%E5%BA%A6-pod%E8%B0%83%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%AF%87/">第五章-k8s调度-pod调度控制篇</a>
@@ -764,10 +762,6 @@
         
           <li>
             <a href="/2022/03/30/%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9AK8s%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%BF%97/">第三章：K8s监控与日志</a>
-          </li>
-        
-          <li>
-            <a href="/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">第一二章K8s核心概念和集群搭建</a>
           </li>
         
       </ul>
