@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Centos7安装hexo</title>
+    <url>/2022/04/23/Centos7%E5%AE%89%E8%A3%85hexo/</url>
+    <content><![CDATA[<h2 id="yum安装nodejs-LTS-V16"><a href="#yum安装nodejs-LTS-V16" class="headerlink" title="yum安装nodejs LTS V16"></a>yum安装nodejs LTS V16</h2><p>nodejs地址: <a href="https://nodejs.org/zh-cn/download/">https://nodejs.org/zh-cn/download/</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装yum源</span></span><br><span class="line">curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum安装nodejs</span></span><br><span class="line">sudo yum -y install nodejs</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="查看node和npm版本"><a href="#查看node和npm版本" class="headerlink" title="查看node和npm版本"></a>查看node和npm版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo</span><br><span class="line"></span><br><span class="line">hexo -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo-server，用于预览静态网站</span></span><br><span class="line">npm install hexo-server --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装本地搜索插件</span></span><br><span class="line">npm install hexo-generator-searchdb --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装文章字数统计及阅读时常功能</span></span><br><span class="line">npm install hexo-wordcount --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装图片显示插件(实测没用)</span></span><br><span class="line">npm install hexo-asset-img --save</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="发布文件"><a href="#发布文件" class="headerlink" title="发布文件"></a>发布文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑这个文章</span></span><br><span class="line"><span class="built_in">source</span>\_posts\hexo部署gitpage.md</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解决办法清除缓存和已生成的静态文件</span></span><br><span class="line"><span class="comment"># 生成静态页面并发布文章</span></span><br><span class="line"><span class="comment"># 打开hexo服务</span></span><br><span class="line">hexo clean &amp;&amp; hexo g -d &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Centos7安装socks5</title>
     <url>/2022/04/23/Centos7%E6%90%AD%E5%BB%BAsocks5/</url>
     <content><![CDATA[<h2 id="编译安装socks5"><a href="#编译安装socks5" class="headerlink" title="编译安装socks5"></a>编译安装socks5</h2><h3 id="安装编译环境"><a href="#安装编译环境" class="headerlink" title="安装编译环境"></a>安装编译环境</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-devel cyrus-sasl-devel openssl-devel</span><br></pre></td></tr></table></figure>
@@ -50,31 +75,6 @@
 ]]></content>
       <tags>
         <tag>socks5</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos7安装hexo</title>
-    <url>/2022/04/23/Centos7%E5%AE%89%E8%A3%85hexo/</url>
-    <content><![CDATA[<h2 id="yum安装nodejs-LTS-V16"><a href="#yum安装nodejs-LTS-V16" class="headerlink" title="yum安装nodejs LTS V16"></a>yum安装nodejs LTS V16</h2><p>nodejs地址: <a href="https://nodejs.org/zh-cn/download/">https://nodejs.org/zh-cn/download/</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装yum源</span></span><br><span class="line">curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum安装nodejs</span></span><br><span class="line">sudo yum -y install nodejs</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="查看node和npm版本"><a href="#查看node和npm版本" class="headerlink" title="查看node和npm版本"></a>查看node和npm版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo</span><br><span class="line"></span><br><span class="line">hexo -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装hexo-server，用于预览静态网站</span></span><br><span class="line">npm install hexo-server --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装本地搜索插件</span></span><br><span class="line">npm install hexo-generator-searchdb --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装文章字数统计及阅读时常功能</span></span><br><span class="line">npm install hexo-wordcount --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装图片显示插件(实测没用)</span></span><br><span class="line">npm install hexo-asset-img --save</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="发布文件"><a href="#发布文件" class="headerlink" title="发布文件"></a>发布文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编辑这个文章</span></span><br><span class="line"><span class="built_in">source</span>\_posts\hexo部署gitpage.md</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解决办法清除缓存和已生成的静态文件</span></span><br><span class="line"><span class="comment"># 生成静态页面并发布文章</span></span><br><span class="line"><span class="comment"># 打开hexo服务</span></span><br><span class="line">hexo clean &amp;&amp; hexo g -d &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -333,6 +333,29 @@
       </tags>
   </entry>
   <entry>
+    <title>第一二章K8s核心概念和集群搭建</title>
+    <url>/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h2 id="1-搭建一个k8s集群"><a href="#1-搭建一个k8s集群" class="headerlink" title="1. 搭建一个k8s集群"></a>1. 搭建一个k8s集群</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[master root ~]<span class="comment"># kubectl get no -owide</span></span><br><span class="line">NAME     STATUS   ROLES                  AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                           KERNEL-VERSION                CONTAINER-RUNTIME</span><br><span class="line">master   Ready    control-plane,master   13d   v1.22.7   192.168.123.200   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br><span class="line">node     Ready    &lt;none&gt;                 13d   v1.22.7   192.168.123.220   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-新建一个命名空间，创建一个deployment并暴露Service"><a href="#2-新建一个命名空间，创建一个deployment并暴露Service" class="headerlink" title="2.新建一个命名空间，创建一个deployment并暴露Service"></a>2.新建一个命名空间，创建一个deployment并暴露Service</h2><ul>
+<li>命名空间： aliang-cka</li>
+<li>名称： web</li>
+<li>镜像： nginx</li>
+</ul>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新建一个命名空间</span></span><br><span class="line">kubectl create namespace aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用kubens切换到aliang-cka这个命名空间</span></span><br><span class="line">kubens aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建deployment</span></span><br><span class="line">kubectl create deployment web --image=nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看web这个deployment创建成功没有</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get deployments.apps web </span></span><br><span class="line">NAME   READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">web    1/1     1            1           7m23s</span><br><span class="line">[master root ~]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">web-96d5df5c8-pj8cg   1/1     Running   0          7m30s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露一个服务</span></span><br><span class="line">kubectl expose deployment web --port=80 --target-port=80 --<span class="built_in">type</span>=NodePort</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问验证</span></span><br><span class="line">[master root ~]<span class="comment"># curl 10.83.28.128|grep title</span></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   615  100   615    0     0   300k      0 --:--:-- --:--:-- --:--:--  300k</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-列出命名空间下指定标签pod"><a href="#3-列出命名空间下指定标签pod" class="headerlink" title="3.列出命名空间下指定标签pod"></a>3.列出命名空间下指定标签pod</h2><p>命名空间: kube-system</p>
+<p>标签: k8s-app&#x3D;kube-dns</p>
+<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查询pod,-n=kube-system,-l=k8s-app=kube-dns</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns</span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看完整标签</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns --show-labels </span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE   LABELS</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>k8s</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>macOS显示隐藏文件</title>
     <url>/2022/02/22/macOS%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6/</url>
     <content><![CDATA[<h2 id="苹果Mac操作系统下怎么显示隐藏文件"><a href="#苹果Mac操作系统下怎么显示隐藏文件" class="headerlink" title="苹果Mac操作系统下怎么显示隐藏文件"></a>苹果Mac操作系统下怎么显示隐藏文件</h2><br/>
@@ -364,29 +387,6 @@
 ]]></content>
       <tags>
         <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第一二章K8s核心概念和集群搭建</title>
-    <url>/2022/03/30/%E7%AC%AC%E4%B8%80%E4%BA%8C%E7%AB%A0K8s%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<h2 id="1-搭建一个k8s集群"><a href="#1-搭建一个k8s集群" class="headerlink" title="1. 搭建一个k8s集群"></a>1. 搭建一个k8s集群</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[master root ~]<span class="comment"># kubectl get no -owide</span></span><br><span class="line">NAME     STATUS   ROLES                  AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                           KERNEL-VERSION                CONTAINER-RUNTIME</span><br><span class="line">master   Ready    control-plane,master   13d   v1.22.7   192.168.123.200   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br><span class="line">node     Ready    &lt;none&gt;                 13d   v1.22.7   192.168.123.220   &lt;none&gt;        Rocky Linux 8.5 (Green Obsidian)   5.4.180-1.el8.elrepo.x86_64   docker://20.10.12</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-新建一个命名空间，创建一个deployment并暴露Service"><a href="#2-新建一个命名空间，创建一个deployment并暴露Service" class="headerlink" title="2.新建一个命名空间，创建一个deployment并暴露Service"></a>2.新建一个命名空间，创建一个deployment并暴露Service</h2><ul>
-<li>命名空间： aliang-cka</li>
-<li>名称： web</li>
-<li>镜像： nginx</li>
-</ul>
-<h3 id="答案"><a href="#答案" class="headerlink" title="答案:"></a>答案:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新建一个命名空间</span></span><br><span class="line">kubectl create namespace aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用kubens切换到aliang-cka这个命名空间</span></span><br><span class="line">kubens aliang-cka</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建deployment</span></span><br><span class="line">kubectl create deployment web --image=nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看web这个deployment创建成功没有</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get deployments.apps web </span></span><br><span class="line">NAME   READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">web    1/1     1            1           7m23s</span><br><span class="line">[master root ~]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">web-96d5df5c8-pj8cg   1/1     Running   0          7m30s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露一个服务</span></span><br><span class="line">kubectl expose deployment web --port=80 --target-port=80 --<span class="built_in">type</span>=NodePort</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问验证</span></span><br><span class="line">[master root ~]<span class="comment"># curl 10.83.28.128|grep title</span></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   615  100   615    0     0   300k      0 --:--:-- --:--:-- --:--:--  300k</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-列出命名空间下指定标签pod"><a href="#3-列出命名空间下指定标签pod" class="headerlink" title="3.列出命名空间下指定标签pod"></a>3.列出命名空间下指定标签pod</h2><p>命名空间: kube-system</p>
-<p>标签: k8s-app&#x3D;kube-dns</p>
-<h3 id="答案-1"><a href="#答案-1" class="headerlink" title="答案"></a>答案</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查询pod,-n=kube-system,-l=k8s-app=kube-dns</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns</span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看完整标签</span></span><br><span class="line">[master root ~]<span class="comment"># kubectl get po -n kube-system -l k8s-app=kube-dns --show-labels </span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS      AGE   LABELS</span><br><span class="line">coredns-78fcd69978-8kjtl   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br><span class="line">coredns-78fcd69978-jkxkd   1/1     Running   1 (10d ago)   12d   k8s-app=kube-dns,pod-template-hash=78fcd69978</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>k8s</tag>
       </tags>
   </entry>
   <entry>
@@ -443,6 +443,32 @@
       </tags>
   </entry>
   <entry>
+    <title>第六章：K8s网络-Service与Ingress篇</title>
+    <url>/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/</url>
+    <content><![CDATA[<h2 id="1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问"><a href="#1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问" class="headerlink" title="1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问"></a>1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问</h2><ul>
+<li>名称: web-service</li>
+<li>pod名称: web</li>
+<li>容器端口: 80</li>
+</ul>
+<h3 id="答"><a href="#答" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看pod的标签</span></span><br><span class="line">kubectl get po web -owide --showlable</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建service,选择pod的标签</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-任意名称创建deployment和service-使用busybox容器nslookup解析service"><a href="#2-任意名称创建deployment和service-使用busybox容器nslookup解析service" class="headerlink" title="2.任意名称创建deployment和service,使用busybox容器nslookup解析service"></a>2.任意名称创建deployment和service,使用busybox容器nslookup解析service</h2><h3 id="答-1"><a href="#答-1" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.列出命名空间下,某个service关联的所有pod,并将pod名称写到/opt/pod.txt中(使用标签筛选)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 答:</span></span><br><span class="line"></span><br><span class="line">```bash</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-使用ingress将美女示例应用暴露到外部访问"><a href="#4-使用ingress将美女示例应用暴露到外部访问" class="headerlink" title="4.使用ingress将美女示例应用暴露到外部访问"></a>4.使用ingress将美女示例应用暴露到外部访问</h2><ul>
+<li>镜像: lizhenliang&#x2F;java-demo</li>
+</ul>
+<h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>k8s</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第四章：K8s管理应用生命周期-Deployment篇</title>
     <url>/2022/03/30/%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9AK8s%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-Deployment%E7%AF%87/</url>
     <content><![CDATA[<h2 id="1-创建一个deployment副本数为3-然后滚动更新镜像版本-并记录这个更新记录-最后再回滚到上一个版本"><a href="#1-创建一个deployment副本数为3-然后滚动更新镜像版本-并记录这个更新记录-最后再回滚到上一个版本" class="headerlink" title="1.创建一个deployment副本数为3,然后滚动更新镜像版本,并记录这个更新记录,最后再回滚到上一个版本"></a>1.创建一个deployment副本数为3,然后滚动更新镜像版本,并记录这个更新记录,最后再回滚到上一个版本</h2><ul>
@@ -470,32 +496,6 @@
 
 <p>修改后的yaml文件</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">    <span class="attr">app_env_stage:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">      <span class="attr">app_env_stage:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">        <span class="attr">app_env_stage:</span> <span class="string">dev</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">nginx</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>k8s</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第六章：K8s网络-Service与Ingress篇</title>
-    <url>/2022/03/30/%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9AK8s%E7%BD%91%E7%BB%9C-Service%E4%B8%8EIngress%E7%AF%87/</url>
-    <content><![CDATA[<h2 id="1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问"><a href="#1-给一个pod创建service-并可以通过ClusterIP-x2F-NodePort访问" class="headerlink" title="1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问"></a>1.给一个pod创建service,并可以通过ClusterIP&#x2F;NodePort访问</h2><ul>
-<li>名称: web-service</li>
-<li>pod名称: web</li>
-<li>容器端口: 80</li>
-</ul>
-<h3 id="答"><a href="#答" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看pod的标签</span></span><br><span class="line">kubectl get po web -owide --showlable</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建service,选择pod的标签</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-任意名称创建deployment和service-使用busybox容器nslookup解析service"><a href="#2-任意名称创建deployment和service-使用busybox容器nslookup解析service" class="headerlink" title="2.任意名称创建deployment和service,使用busybox容器nslookup解析service"></a>2.任意名称创建deployment和service,使用busybox容器nslookup解析service</h2><h3 id="答-1"><a href="#答-1" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 3.列出命名空间下,某个service关联的所有pod,并将pod名称写到/opt/pod.txt中(使用标签筛选)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 答:</span></span><br><span class="line"></span><br><span class="line">```bash</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-使用ingress将美女示例应用暴露到外部访问"><a href="#4-使用ingress将美女示例应用暴露到外部访问" class="headerlink" title="4.使用ingress将美女示例应用暴露到外部访问"></a>4.使用ingress将美女示例应用暴露到外部访问</h2><ul>
-<li>镜像: lizhenliang&#x2F;java-demo</li>
-</ul>
-<h3 id="答-2"><a href="#答-2" class="headerlink" title="答:"></a>答:</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
